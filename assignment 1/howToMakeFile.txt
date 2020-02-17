@@ -1,0 +1,17 @@
+firstprogram: stack.h teststack.cpp stackstack.cpp
+    g++ -Wall -o program1 teststack.cpp stackstack.cpp
+
+secondprogram: complex.cpp
+	g++ -Wall -o program2 complex.cpp
+
+all: firstprogram secondprogram
+clean:
+	rm *.o program1 program2
+
+//differnet way of makefile first program1
+firstprogramtwo: teststack.o stack stack.o
+	g++ teststack.o stackstack.o -o program1
+teststack.o: teststack.cpp
+	g++ -c teststack.cpp
+stackstack.o: stackstack.cpp
+	g++ -c stackstack.cppßß
