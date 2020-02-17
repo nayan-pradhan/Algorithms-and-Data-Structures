@@ -1,0 +1,40 @@
+all: firstprogram secondprogram thirdprogram fourthprogram fifthprogram seventhprogram
+
+firstprogram: 2_1.o
+	g++ 2_1.o -o program1
+
+2_1.o: 2_1.cpp
+	g++ -std=c++11 -c 2_1.cpp
+
+secondprogram: 2_2.o
+	g++ -2_2.o -o program2
+
+2_2.o: 2_2.cpp
+	g++ - c 2_2.cpp
+
+thirdprogram: testWindGauge.o
+	g++ testWindGauge.o -o program3
+
+testWindGauge.o: testWindGauge.cpp WindGauge.h
+	g++ -c testWindGauge.cpp
+
+fourthprogram: 2_4.o
+	g++ 2_4.o -o program4
+
+2_4.o: 2_4.cpp
+	g++ -c 2_4.cpp
+
+fifthprogram: 2_5.o
+	g++ 2_5.o -o program5
+
+2_5.o: 2_5.cpp
+	g++ -c 2_5.cpp
+
+seventhprogram: 2_7.o
+	g++ 2_7.o -o program7
+
+2_7.o: 2_7.cpp
+	g++ -c 2_7.cpp
+
+clean:
+	rm *.o program1 program2 program3 program4 program5 program7
