@@ -1,3 +1,10 @@
+/* 
+    CH-231-A
+    a3 p2a, b, c cpp 
+    Nayan Man Singh Pradhan 
+    n.pradhan@jacobs-university.de
+*/
+
 #include <iostream>
 #include <time.h>
 

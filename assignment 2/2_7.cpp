@@ -45,6 +45,7 @@ int main() {
         cout << "Name not found!" << endl; //print name not found
     }
     //function prints the DOB if it finds the name and returns T
+    in.close(); //close the file
     return 0;
 }
 
