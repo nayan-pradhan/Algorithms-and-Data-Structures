@@ -1,35 +1,55 @@
+// CH-231-A
+// a4 
+// Nayan Man Singh Pradhan 
+// n.pradhan@jacobs-university.de
+
 #include <iostream>
 #include <time.h>
+#include <chrono>
 
 void print (int *arr, int size);
-void insertionSort (int *arr, int size);
+void insertionSort (int *arr, int left, int right);
 void mergeSort (int *arr, int left, int right, int k);
 void merge (int *arr, int left, int right, int mid);
 
 int main () {
+    int size;
     int k;
+    std::cout << "Enter size of array: ";
+    std::cin >> size;
     std::cout << "Enter k: ";
     std::cin >> k;
-    int size = 10;
-    if (k > size) {
+    //just to check for k
+    if (k > size || k < 0) {
         std::cout << "Invalid input of k!" << std::endl;
         exit (-1);
     }
     int arr[size];
     srand (static_cast < unsigned int > (time(0))); //for rand num
     for (int i = 0; i < size; i++) {
-        arr[i] = rand()%99;
+        arr[i] = rand()%999;
     }
+
     std::cout << "Array without sorting: " << std::endl;
     print (arr, size); 
 
+    //for time taken to execute mergeSort with randomly generated array
+    auto startArr = std::chrono::high_resolution_clock::now();
     mergeSort (arr, 0, size-1, k);
-
+    auto stopArr = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast  
+        <std::chrono::microseconds>(stopArr-startArr);
+    
+    std::cout << std::endl;
+    
     std::cout << "Array with sorting: " << std::endl;
     print (arr, size);
+    std::cout << "Total time taken: " << duration.count() << 
+        " milli seconds." << std::endl;
     return 0;
 }
 
+//function that prints array
 void print (int *arr, int size) {
     for (int i = 0; i < size; i++) {
         std::cout << arr[i] << " ";
@@ -37,12 +57,13 @@ void print (int *arr, int size) {
     std::cout << std::endl;
 } 
 
-void insertionSort (int *arr, int size) {
+//function that executes insertion sort
+void insertionSort (int *arr, int left, int right) {
     int key;
-    for (int x = 1; x < size; x++) {
+    for (int x = left+1; x < right; x++) {
         key = arr[x];
         int y = x - 1;
-        while (y >= 0 && arr[y] > key) {
+        while (y >= left && arr[y] > key) {
             arr[y+1] = arr[y];
             y--;
         }
@@ -50,9 +71,11 @@ void insertionSort (int *arr, int size) {
     }
 }
 
+//function for mergeSort
 void mergeSort (int *arr, int left, int right, int k) {
+    //if the size of array reaches k, it does insertion sort
     if ((right - left + 1) <= k) {
-        insertionSort(arr, right + 1);
+        insertionSort(arr, left, right+1);
     }
     else if ((right - left + 1) > k) {
         int mid;
