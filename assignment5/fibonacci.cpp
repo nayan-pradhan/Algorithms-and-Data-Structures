@@ -84,7 +84,7 @@ void matrixRep (int n) {
         //passing to calculate power of matrix
         matrixPower (myMatrix, n);
         if (myMatrix[0][1] == myMatrix[1][0]) { //this should always be true
-            std::cout << myMatrix [0][1] << std::endl;
+            std::cout << myMatrix [0][1];
         }
         else { //if not true, there is an error
             std::cout << "Error!" << std::endl;

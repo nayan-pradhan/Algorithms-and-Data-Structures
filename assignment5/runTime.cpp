@@ -23,21 +23,33 @@ int main() {
     int userInput;
     std::cout << "Enter n: ";
     std::cin >> userInput;
-    int startTime = clock();
-    std::cout << startTime << std::endl;
-    for (int n = 1; n <= userInput; n++) {
-        std::cout << "Naive Recursive Method: ";
-        std::cout << naiveRecursive (n); 
-        std::cout << std::endl;
-        std::cout << "Bottom Up Method: ";
-        std::cout << bottomUp (n);
-        std::cout << std::endl;
-        std::cout << "Closed Form: ";
-        std::cout << closedForm (n);
-        std::cout << std::endl;
-        std::cout << "Matrix Representation: ";
-        matrixRep (n);
-        std::cout << std::endl;
+    auto start = std::chrono::high_resolution_clock::now();
+    while (1) {
+        for (int n = 1; n <= userInput; n++) {
+            std::cout << "for " << n << std::endl;
+            std::cout << "Naive Recursive Method: ";
+            std::cout << naiveRecursive (n); 
+            std::cout << std::endl;
+            std::cout << "Bottom Up Method: ";
+            std::cout << bottomUp (n);
+            std::cout << std::endl;
+            std::cout << "Closed Form: ";
+            std::cout << closedForm (n);
+            std::cout << std::endl;
+            std::cout << "Matrix Representation: ";
+            matrixRep (n);
+            std::cout << std::endl;
+            auto stop = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast  
+                <std::chrono::seconds>(stop-start);
+            std::cout << "time = " << duration.count() << "s" << std::endl;
+            if (n == userInput) {
+                exit (0);
+            }
+            else if (duration.count() > 3) {
+                exit(0);
+            }
+        }
     }
 }
 
@@ -123,7 +135,7 @@ int matrixPower (int **myMatrix, int n) {
 }
 
 void delocateMatrix (int **myMatrix) { //delocate memory of matrix
-    // std::cout << "Matrix delocated from memory!" << std::endl; //message
+    //std::cout << "Matrix delocated from memory!" << std::endl; //message
     for (int i = 0; i < 2; i++) {
         delete [] myMatrix[i];
     }
