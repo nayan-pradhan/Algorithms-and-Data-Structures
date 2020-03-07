@@ -7,6 +7,9 @@
 
 #include <iostream>
 #include <math.h>
+#include <chrono>
+#include <ctime>
+#include <fstream>
 
 //functions
 int naiveRecursive (int n);
@@ -17,25 +20,25 @@ int matrixPower (int **myMatrix, int n);
 void delocateMatrix (int **myMatrix);
 
 int main() {
-    int n;
-    std::cout << "Enter n: "; //user input
-    std::cin >> n;
-
-    std::cout << "Naive Recursive Method: ";
-    std::cout << naiveRecursive (n); 
-    std::cout << std::endl;
-
-    std::cout << "Bottom Up Method: ";
-    std::cout << bottomUp (n);
-    std::cout << std::endl;
-
-    std::cout << "Closed Form: ";
-    std::cout << closedForm (n);
-    std::cout << std::endl;
-
-    std::cout << "Matrix Representation: ";
-    matrixRep (n);
-    std::cout << std::endl;
+    int userInput;
+    std::cout << "Enter n: ";
+    std::cin >> userInput;
+    int startTime = clock();
+    std::cout << startTime << std::endl;
+    for (int n = 1; n <= userInput; n++) {
+        std::cout << "Naive Recursive Method: ";
+        std::cout << naiveRecursive (n); 
+        std::cout << std::endl;
+        std::cout << "Bottom Up Method: ";
+        std::cout << bottomUp (n);
+        std::cout << std::endl;
+        std::cout << "Closed Form: ";
+        std::cout << closedForm (n);
+        std::cout << std::endl;
+        std::cout << "Matrix Representation: ";
+        matrixRep (n);
+        std::cout << std::endl;
+    }
 }
 
 int naiveRecursive (int n) {
@@ -48,7 +51,7 @@ int naiveRecursive (int n) {
 }
 
 int bottomUp (int n) {
-    if (n == 1) { //if n = 1 case
+    if (n == 1) {
         return 1;
     }
     int arr[n]; //an array of n elem is created
@@ -68,29 +71,24 @@ int closedForm (int n) {
 }
 
 void matrixRep (int n) {
-    if (n == 0) {
-        std::cout << 0;
+    int **myMatrix = new int*[2]; //dynamically creating a 2d array
+    for (int i = 0 ; i < 2; i++) {
+        myMatrix[i] = new int[2];
     }
-    else {
-        int **myMatrix = new int*[2]; //dynamically creating a 2d array
-        for (int i = 0 ; i < 2; i++) {
-            myMatrix[i] = new int[2];
-        }
-        //myMatrix
-        myMatrix[0][0] = 1;
-        myMatrix[0][1] = 1;
-        myMatrix[1][0] = 1;
-        myMatrix[1][1] = 0;
-        //passing to calculate power of matrix
-        matrixPower (myMatrix, n);
-        if (myMatrix[0][1] == myMatrix[1][0]) { //this should always be true
-            std::cout << myMatrix [0][1] << std::endl;
-        }
-        else { //if not true, there is an error
-            std::cout << "Error!" << std::endl;
-        }
-        delocateMatrix (myMatrix); //delocate allocated memory for matrix  
+    //myMatrix
+    myMatrix[0][0] = 1;
+    myMatrix[0][1] = 1;
+    myMatrix[1][0] = 1;
+    myMatrix[1][1] = 0;
+    //passing to calculate power of matrix
+    matrixPower (myMatrix, n);
+    if (myMatrix[0][1] == myMatrix[1][0]) { //this should always be true
+        std::cout << myMatrix [0][1] << std::endl;
     }
+    else { //if not true, there is an error
+        std::cout << "Error!" << std::endl;
+    }
+    delocateMatrix (myMatrix); //delocate allocated memory for matrix
 }
     
 int matrixPower (int **myMatrix, int n) {
