@@ -1,7 +1,7 @@
 //problem 5.2a
 
-let firstElem = 1234
-let secondElem = 234
+let firstElem = 11011101
+let secondElem = 1011
 let sum = 0;
 let tempSum = 0;
 
