@@ -1,0 +1,20 @@
+//problem 5.2a
+
+let firstElem = 1234
+let secondElem = 234
+let sum = 0;
+let tempSum = 0;
+
+//need to multiply firstElem and secondElem
+
+for i = 0 upto lengthof.firstElem
+    for j = 0 upto lengthof.secondElem
+        ans = firstElem[i] * secondElem[j]
+        bitshift ans << j
+        sum2 += ans;
+    tempSum = ans << i;
+    sum += tempSum;
+
+//time complexity for one multiplicatin is n. There 
+are two nested loops running n times, therefore,
+time complexity is bigO (n^2).
