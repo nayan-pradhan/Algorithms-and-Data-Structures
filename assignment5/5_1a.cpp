@@ -7,8 +7,6 @@
 
 #include <iostream>
 #include <math.h>
-#include <chrono>
-#include <fstream>
 
 //functions
 int naiveRecursive (int n);
@@ -19,58 +17,25 @@ void matrixPower (int matrix[2][2], int n);
 void matrixMultiply (int matrixA[2][2], int matrixB[2][2]);
 
 int main() {
-    int userInput;
-    std::cout << "Enter n: ";
-    std::cin >> userInput;
-    std::ofstream output ("data.txt");
-    std::cout << "file data.txt created successfully!" << std::endl;
-    auto start = std::chrono::high_resolution_clock::now();
-    while (1) {
-        for (int n = 1; n <= userInput; n++) {
-            output << n << " ";
-            auto startNaive = std::chrono::high_resolution_clock::now();
-            naiveRecursive (n); 
-            auto stopNaive = std::chrono::high_resolution_clock::now();
-            auto durNaive = std::chrono::duration_cast
-                <std::chrono::microseconds>(stopNaive - startNaive);
-            output << durNaive.count() << " ";
+    int n;
+    std::cout << "Enter n: "; //user input
+    std::cin >> n;
 
-            auto startBottom = std::chrono::high_resolution_clock::now();
-            bottomUp (n);
-            auto stopBottom = std::chrono::high_resolution_clock::now();
-            auto durBottom = std::chrono::duration_cast
-                <std::chrono::microseconds>(stopBottom - startBottom);
-            output << durBottom.count() << " ";
+    std::cout << "Naive Recursive Method: ";
+    std::cout << naiveRecursive (n); 
+    std::cout << std::endl;
 
-            auto startClosed = std::chrono::high_resolution_clock::now();
-            closedForm (n);
-            auto stopClosed = std::chrono::high_resolution_clock::now();
-            auto durClosed = std::chrono::duration_cast
-                <std::chrono::microseconds>(stopClosed - startClosed);
-            output << durClosed.count() << " ";
+    std::cout << "Bottom Up Method: ";
+    std::cout << bottomUp (n);
+    std::cout << std::endl;
 
-            auto startMatrix = std::chrono::high_resolution_clock::now();
-            matrixRep (n);
-            auto stopMatrix = std::chrono::high_resolution_clock::now();
-            auto durMatrix = std::chrono::duration_cast
-                <std::chrono::microseconds>(stopMatrix - startMatrix);
-            output << durMatrix.count() << std::endl;
+    std::cout << "Closed Form: ";
+    std::cout << closedForm (n);
+    std::cout << std::endl;
 
-            auto stop = std::chrono::high_resolution_clock::now();
-            auto duration = std::chrono::duration_cast  
-                <std::chrono::seconds>(stop-start);
-            std::cout << "time = " << duration.count() << "s" << std::endl;
-
-            if (n == userInput) {
-                std::cout << "Max n reached!" << std::endl;
-                exit (0);
-            }
-            else if (duration.count() > 10) {
-                std::cout << "Max time reached!" << std::endl;
-                exit(0);
-            }
-        }
-    }
+    std::cout << "Matrix Representation: ";
+    matrixRep (n);
+    std::cout << std::endl;
 }
 
 int naiveRecursive (int n) {
@@ -83,7 +48,7 @@ int naiveRecursive (int n) {
 }
 
 int bottomUp (int n) {
-    if (n == 1) {
+    if (n == 1) { //if n = 1 case
         return 1;
     }
     int arr[n]; //an array of n elem is created
@@ -117,6 +82,12 @@ void matrixRep (int n) {
             matrixPower (myMatrix, (n-1)/2);
             matrixMultiply (myMatrix, myMatrix);
             matrixMultiply (myMatrix, refMatrix);
+        }
+        if (myMatrix[0][1] == myMatrix[1][0]) {
+            std::cout << myMatrix[0][1] << std::endl;
+        }
+        else { 
+            std::cout << "Error!" << std::endl;
         }
     }
 }
