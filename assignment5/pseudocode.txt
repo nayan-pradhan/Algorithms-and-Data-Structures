@@ -1,20 +1,32 @@
 //problem 5.2a
 
-let firstElem = 11011101
-let secondElem = 1011
+                    1 1 0 1 0
+                    x 1 0 1 1
+                    ---------
+                    1 1 0 1 0
+                  1 1 0 1 0
+                0 0 0 0 0 
+            + 1 1 0 1 0 
+            ------------------
+            1 0 0 0 1 1 1 1 0
+
+
+let firstNum = 1011
+let secondNum = 11010
 let sum = 0;
 let tempSum = 0;
+let totalSum = 0;
 
-//need to multiply firstElem and secondElem
-
-for i = 0 upto lengthof.firstElem
-    for j = 0 upto lengthof.secondElem
-        ans = firstElem[i] * secondElem[j]
-        bitshift ans << j
-        sum2 += ans;
-    tempSum = ans << i;
-    sum += tempSum;
+for i = 1 upto lengthof.firstNum
+    for j = 1 upto lengthof.secondNum
+        ans = firstNum[j] * secondNum[i]
+        bitshift ans << j-1
+        sum += ans;
+    tempSum += ans << i-1
+totalSum += tempSum;
 
 //time complexity for one multiplicatin is n. There 
 are two nested loops running n times, therefore,
 time complexity is bigO (n^2).
+
+//problem 5.2b

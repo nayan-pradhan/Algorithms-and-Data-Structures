@@ -9,12 +9,16 @@
 #include <math.h>
 
 //functions
-int naiveRecursive (int n);
-int bottomUp (int n);
-int closedForm (int n);
-void matrixRep (int n);
+long long int naiveRecursive (int n);
+long long int bottomUp (int n);
+long long int closedForm (int n);
+long long int matrixRep (int n);
 void matrixPower (int matrix[2][2], int n);
 void matrixMultiply (int matrixA[2][2], int matrixB[2][2]);
+long double powerClosed (long double value, int n);
+
+long double pos = ((1 + sqrt(5))/2); //for formula in closed Form (global)
+long double neg = ((1 - sqrt(5)))/2; //for formula in closed From (global)
 
 int main() {
     int n;
@@ -34,11 +38,11 @@ int main() {
     std::cout << std::endl;
 
     std::cout << "Matrix Representation: ";
-    matrixRep (n);
+    std::cout << matrixRep (n);
     std::cout << std::endl;
 }
 
-int naiveRecursive (int n) {
+long long int naiveRecursive (int n) {
     if (n == 0 || n == 1) { //base conditions
         return n;
     }
@@ -47,7 +51,7 @@ int naiveRecursive (int n) {
     }
 }
 
-int bottomUp (int n) {
+long long int bottomUp (int n) {
     if (n == 1) { //if n = 1 case
         return 1;
     }
@@ -61,15 +65,31 @@ int bottomUp (int n) {
     return arr[n]; //returns fibonacci until the last n
 }
 
-int closedForm (int n) {
-    double pos = ((1 + sqrt(5))/2); //for formula
-    double neg = ((1 - sqrt(5)))/2; //for formula
-    return ((pow(pos, n)- pow(neg, n)) / sqrt(5)); //returns fibonacci
+long long closedForm (int n) {
+    if (n == 1 || n == 0) { //base cases
+        return n;
+    }
+    else { //formula
+        return ((powerClosed(pos, n) - powerClosed(neg, n))/sqrt(5));
+    }
 }
 
-void matrixRep (int n) {
-    if (n == 0) { //if n is 0, the fibonacci is 0
-        std::cout << 0;
+long double powerClosed (long double value, int n) {
+    if (n == 0) { //base case
+        return 1;
+    }
+    else if (n % 2 == 0) { //even case recursive
+        return (powerClosed(value, n/2) * powerClosed(value, n/2));
+    }
+    else { //odd case recursive
+        return (value * (powerClosed(value, (n-1)/2)) * 
+            (powerClosed(value, (n-1)/2)));
+    }
+}
+
+long long int matrixRep (int n) { 
+    if (n == 0 || n == 1) { //base cases
+        return n;
     }
     else {
         int myMatrix[2][2] = {{1,1}, {1,0}}; //making my matrix
@@ -85,10 +105,11 @@ void matrixRep (int n) {
             matrixMultiply (myMatrix, refMatrix); //multiply with ref matrix
         }
         if (myMatrix[0][1] == myMatrix[1][0]) { //just checking
-            std::cout << myMatrix[0][1] << std::endl;
+           return myMatrix[0][1];
         }
         else { //if the check is incorrect
             std::cout << "Error!" << std::endl;
+            return (-1);
         }
     }
 }
