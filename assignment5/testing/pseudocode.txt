@@ -1,0 +1,52 @@
+//problem 5.2a
+
+                    1 1 0 1 0
+                    x 1 0 1 1
+                    ---------
+                    1 1 0 1 0
+                  1 1 0 1 0
+                0 0 0 0 0 
+            + 1 1 0 1 0 
+            ------------------
+            1 0 0 0 1 1 1 1 0
+
+let firstNum = 1011
+let secondNum = 11010
+let sum = 0;
+let tempSum = 0;
+let totalSum = 0;
+
+for i = 1 upto lengthof.firstNum
+    for j = 1 upto lengthof.secondNum
+        ans = firstNum[j] * secondNum[i]
+        bitshift ans << j-1
+        sum += ans;
+    tempSum += ans << i-1
+totalSum += tempSum;
+
+//time complexity for one multiplicatin is n. There 
+are two nested loops running n times, therefore,
+time complexity is bigO (n^2).
+
+//problem 5.2b
+//assume n to be a power of 2 = even
+
+let firstNum = 11100111
+let secondNum = 1101
+
+divAndConq (firstElem, secondElem) {
+    int len = maximumOf(lengthof.firstElem, lengthof.secondElem)
+    if (len == 1) {
+        return firstElem * secondElem
+    }
+    else {
+        firstL = left [0 -> lengthof.firstElem/2]
+        firstR = right [(lengthof.firstElem/2)+1 -> lengthof.firstElem]
+        secondL = left [0 -> lengthof.secondElem/2]
+        secondR = right [(lengthof.secondElem/2)+1 -> lengthof.secondElem]
+        Mult1 = divAndConq (firstL, secondL)
+        Mult2 = divAndConq (firstR, secondR)
+        temp = divAndConq (firstL+firstR, secondL+secondR)
+        return Mult1*2^n + (temp-Mult1-Mult2) * 2^n/2 + Mult2 //multiplied by 2^n to bit shift
+    }
+}
