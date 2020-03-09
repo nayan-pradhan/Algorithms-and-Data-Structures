@@ -113,8 +113,6 @@ int main() {
             <std::chrono::nanoseconds>(stopNaive - startNaive);
         naive << durNaive.count() << std::endl;
         indexTimeNaive += durNaive.count();
-                std::cout << "indexTimeNaive:" << indexTimeNaive << std::endl; //delete later
-                std::cout << "durNaive.count():" << durNaive.count() << std::endl; //delete later
         if (indexTimeNaive >= maxTime) {
             std::cout << "Naive Recursive form stopped because max time reached!" << std::endl;
             break;
