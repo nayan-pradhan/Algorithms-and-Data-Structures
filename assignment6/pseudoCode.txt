@@ -1,0 +1,9 @@
+int arr[n] //an array of n elements
+
+for (int j = 0; j < n-1; j++) { //a loop that going till n-2 because n-1 will be sorted automatically at that case
+	for (int i = 0; i < n-1; i++) { //a loop that iterates from the first element to the second last element
+		if (arr[i] > arr[i+1] { //if the previous term is greater than the next
+			swap (arr[i], arr[i+1]) //perform a swap
+		}
+	}o
+}
