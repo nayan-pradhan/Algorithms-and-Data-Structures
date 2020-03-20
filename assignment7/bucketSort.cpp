@@ -3,7 +3,7 @@
 
 void bucketSort (std::vector<float>*arr);
 void print (std::vector<float>arr);
-void insertionSort (std::vector<float>bucket);
+void insertionSort (std::vector<float>*bucket);
 
 int main() {
     std::vector<float>arr = {0.9, 0.1, 0.6, 0.7, 0.6, 0.3, 0.1}; //my array
@@ -37,7 +37,7 @@ void bucketSort (std::vector<float> *arr) {
     }
     //sorting elements of each range
     for (int i = 0; i < (*arr).size(); i++) {
-        insertionSort(bucket[i]); //using insertionSort
+        insertionSort(&bucket[i]); //using insertionSort
     }
     int position = 0; //position of element
     for (int i = 0; i < (*arr).size(); i++) { //going through buckets
@@ -51,15 +51,15 @@ void bucketSort (std::vector<float> *arr) {
 }
 
 //insertionSort implementation for bucketSort
-void insertionSort (std::vector<float>bucket) {
+void insertionSort (std::vector<float>*bucket) {
     float key;
-    for (int i = 1; i < bucket.size(); i++) {
-        key = bucket[i];
+    for (int i = 1; i < (*bucket).size(); i++) {
+        key = (*bucket)[i];
         int ref = i - 1;
-        while (ref >= 0 && bucket[ref] > key) {
-            bucket[ref+1] = bucket[ref];
+        while (ref >= 0 && (*bucket)[ref] > key) {
+            (*bucket)[ref+1] = (*bucket)[ref];
             ref--;
         }
-        bucket[ref+1] = key;
+        (*bucket)[ref+1] = key;
     }
 }
