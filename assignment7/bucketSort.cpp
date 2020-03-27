@@ -1,3 +1,10 @@
+/* 
+    CH-231-A
+    a7.1b cpp 
+    Nayan Man Singh Pradhan 
+    n.pradhan@jacobs-university.de
+*/
+
 #include <iostream>
 #include <vector>
 

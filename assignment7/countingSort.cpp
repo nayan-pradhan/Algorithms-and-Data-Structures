@@ -1,3 +1,10 @@
+/* 
+    CH-231-A
+    a7.1a cpp 
+    Nayan Man Singh Pradhan 
+    n.pradhan@jacobs-university.de
+*/
+
 #include <iostream>
 
 //just a function that prints the array
