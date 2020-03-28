@@ -39,31 +39,21 @@ Stack<T>::Stack() {
 // parametric constructor for stack
 template<class T>
 Stack<T>::Stack(int newSize) {
-    std::cout << "Paramteric constructor called!" << std::endl;
     size = newSize;
-    currentSize = 0;
-    std::cout << "size = " << size << std::endl;
-    
+    currentSize = 0;    
 }
 
 // push for stack
 template<class T>
 bool Stack<T>::push(T x) {
-    // std::cout << "Push currentSize = " << currentSize << std::endl;
-    // std::cout << "Push size = " << size <<std::endl;
+    //no need to check for max size here as it is already done in queoe push
     // if ((currentSize) == size) { //if stack size is full!
     //     std::cout << "Overflow! Cannot Push!" << std::endl;
     //     return false;
     // }
-    // else { //if there is space in stack
-    //     // std::cout << "Pushing " << x << std::endl;
-    //     currentSize++; //increase currentSize counter
-    //     myStack.push_back(x); //push in stack
-    //     return true;
-    // }
-        currentSize++; //increase currentSize counter
-        myStack.push_back(x); //push in stack
-        return true;
+    currentSize++; //increase currentSize counter
+    myStack.push_back(x); //push in stack
+    return true;
 }
 
 // isEmpty function for stack
@@ -80,15 +70,10 @@ bool Stack<T>::isEmpty() {
 // pop for stack
 template<class T>
 bool Stack<T>::pop() {
+    //no need to check if no elem in stack as already done in queoe pop
     // if (currentSize == 0) { //is stack empty?
     //     std::cout << "List Empty! Cannot pop any element!" << std::endl;
     //     return false;
-    // }
-    // else { //if not
-    //     // std::cout << "Popping " << myStack[currentSize-1] << std::endl; //print
-    //     myStack.pop_back(); //pop back
-    //     currentSize--; //reduce currentSize
-    //     return true;
     // }
     std::cout << "Popping " << myStack[currentSize-1] << std::endl;
     myStack.pop_back();
@@ -99,19 +84,16 @@ bool Stack<T>::pop() {
 // print for stack
 template<class T>
 void Stack<T>::print() {
-    if (myStack.size() == 0) { //if stack is empty, gives a message
-        std::cout << "Stack is empty so nothing to print!" << std::endl;
-    }
-    else { //else prints
-        // typename std::vector<T>::iterator itr;
-        // for (itr = myStack.begin(); itr != myStack.end(); itr++) {
-        //     std::cout << *itr << " ";
-        // }
-        for (int i = 0; i < currentSize; i++) {
-            std::cout << i << ": " << myStack[i] << " ";
+    // no need to check because already checked in print for queue
+    // if (myStack.size() == 0) { //if stack is empty, gives a message
+    //     std::cout << "Stack is empty so nothing to print!" << std::endl;
+    // }
+    // else { //else prints
+        typename std::vector<T>::iterator itr;
+        for (itr = myStack.begin(); itr != myStack.end(); itr++) {
+            std::cout << *itr << " ";
         }
         std::cout << std::endl;   
-    }
 }
 
 // mehtod that empties myStack
@@ -175,7 +157,7 @@ bool Queue<T>::push(T elem) {
     else {
         myStack1.push(elem);
         myStack2.emptyStack();
-        for (int i = myStack1.getCurrentSize(); i >= 0; i--) { //check if it is -1 or 0 here IMPORTNATNTOJSOFIJSDFOPISJFOSPIJFSOI
+        for (int i = myStack1.getCurrentSize()-1; i >= 0; i--) { 
             myStack2.push(myStack1.getDataIn(i));
         }
         return true;
@@ -191,9 +173,10 @@ bool Queue<T>::pop() {
     }
     else {
         myStack2.pop();
+        myStack1.setCurrentSize(myStack2.getCurrentSize());
         myStack1.emptyStack();
-        for (int i = myStack2.getCurrentSize()-1; i >= 0; i--) { //same herelajflsdkjslkfjaslkfjslfkjslfkjsal;fkjas;lfdkjsa;ldfkjasfl;kajfl;akj
-            myStack1.push(myStack2.getDataIn(i));
+        for (int i = myStack2.getCurrentSize(); i > 0; i--) { 
+            myStack1.push(myStack2.getDataIn(i-1));
         }
         return true;
     }
@@ -201,7 +184,8 @@ bool Queue<T>::pop() {
 
 template<class T>
 bool Queue<T>::isEmpty() {
-    if (myStack1.getCurrentSize() == myStack2.getCurrentSize() && myStack1.getCurrentSize() == 0) {
+    if (myStack1.getCurrentSize() == myStack2.getCurrentSize() &&
+            myStack1.getCurrentSize() == 0) {
         return true;
     }
     else {
@@ -211,7 +195,13 @@ bool Queue<T>::isEmpty() {
 
 template<class T>
 void Queue<T>::print() {
-    myStack1.print();
+    if (myStack1.getCurrentSize() == 0) {
+        std::cout << "Your Queue is empty! Nothing to print!" << std::endl;
+    }
+    else {
+        std::cout << "Your Queue: ";
+        myStack1.print();
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -220,14 +210,14 @@ void Queue<T>::print() {
 int main() {
     Queue<int> myQueue(5);
     for (int i = 1; i < 8; i++) {
-        myQueue.push(i); //pushing the element into myStack
+        myQueue.push(i); //pushing the element into myQueue
         myQueue.print(); //check
     }
-    while (myQueue.isEmpty() != true) { //checking if stack is empty
+    while (myQueue.isEmpty() != true) { //checking if queoe is empty
         myQueue.print(); //check
-        myQueue.pop(); //while stack is not empty, pop elements
+        myQueue.pop(); //while queoe is not empty, pop elements
     }
-    myQueue.print(); //print stack
-    myQueue.pop(); //check what happens when pop is called in empty stack
+    myQueue.print(); //print queoe
+    myQueue.pop(); //check what happens when pop is called in empty queoe
     return 0;
 }
