@@ -103,9 +103,12 @@ void Stack<T>::print() {
         std::cout << "Stack is empty so nothing to print!" << std::endl;
     }
     else { //else prints
-        typename std::vector<T>::iterator itr;
-        for (itr = myStack.begin(); itr != myStack.end(); itr++) {
-            std::cout << *itr << " ";
+        // typename std::vector<T>::iterator itr;
+        // for (itr = myStack.begin(); itr != myStack.end(); itr++) {
+        //     std::cout << *itr << " ";
+        // }
+        for (int i = 0; i < currentSize; i++) {
+            std::cout << i << ": " << myStack[i] << " ";
         }
         std::cout << std::endl;   
     }
@@ -118,7 +121,8 @@ bool Stack<T>::emptyStack() {
         return true;
     }
     else {
-        myStack.empty();
+        currentSize = 0;
+        myStack.clear();
         return true;
     }
 }
@@ -188,7 +192,7 @@ bool Queue<T>::pop() {
     else {
         myStack2.pop();
         myStack1.emptyStack();
-        for (int i = myStack2.getCurrentSize(); i >= 0; i--) { //same herelajflsdkjslkfjaslkfjslfkjslfkjsal;fkjas;lfdkjsa;ldfkjasfl;kajfl;akj
+        for (int i = myStack2.getCurrentSize()-1; i >= 0; i--) { //same herelajflsdkjslkfjaslkfjslfkjslfkjsal;fkjas;lfdkjsa;ldfkjasfl;kajfl;akj
             myStack1.push(myStack2.getDataIn(i));
         }
         return true;
@@ -219,14 +223,11 @@ int main() {
         myQueue.push(i); //pushing the element into myStack
         myQueue.print(); //check
     }
-    myQueue.pop();
-    std::cout << std::endl;
-    myQueue.print();
-    // while (myQueue.isEmpty() != true) { //checking if stack is empty
-    //     myQueue.print(); //check
-    //     myQueue.pop(); //while stack is not empty, pop elements
-    // }
-    // myQueue.print(); //print stack
-    // myQueue.pop(); //check what happens when pop is called in empty stack
+    while (myQueue.isEmpty() != true) { //checking if stack is empty
+        myQueue.print(); //check
+        myQueue.pop(); //while stack is not empty, pop elements
+    }
+    myQueue.print(); //print stack
+    myQueue.pop(); //check what happens when pop is called in empty stack
     return 0;
 }
