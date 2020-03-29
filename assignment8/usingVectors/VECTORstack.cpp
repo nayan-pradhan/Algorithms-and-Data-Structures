@@ -46,7 +46,7 @@ bool Stack<T>::push(T x) {
         return false;
     }
     else { //if there is space in stack
-        // std::cout << "Pushing " << x << std::endl;
+        std::cout << "Pushing " << x << std::endl;
         currentSize++; //increase currentSize counter
         myStack.push_back(x); //push in stack
         return true;
@@ -72,7 +72,7 @@ bool Stack<T>::pop() {
         return false;
     }
     else { //if not
-        // std::cout << "Popping " << myStack[currentSize-1] << std::endl; //print
+        std::cout << "Popping " << myStack[currentSize-1] << std::endl; //print
         myStack.pop_back(); //pop back
         currentSize--; //reduce currentSize
         return true;
@@ -148,7 +148,6 @@ int main() {
         myStack.print(); //check
         myStack.push(i); //pushing the element into myStack
     }
-
     //emptying my stack by pop
     while (myStack.isEmpty() != true) { //checking if stack is empty
         myStack.print(); //check

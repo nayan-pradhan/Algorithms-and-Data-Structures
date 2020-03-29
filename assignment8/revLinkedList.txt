@@ -1,0 +1,21 @@
+head is the first elementt of linkedList
+nextElem = NULL
+prevElem = NULL
+currElem = head
+while (currElem != NULL)
+    nextElem = currElem -> next
+    currELem -> next = prevElem
+    prevElem = currElem
+    currELem = nextElem
+*head = prevElem
+
+convert BST to sorted linkedList
+
+convToLL (BST, root, LL) //pass root first
+
+convToLL (Tree BST, Node *node, linkedList& LL)
+    if (node -> left != NULL) 
+        convToLL (BST, node -> left, LL)
+    LL.insert(node->data)
+    if (node -> right != NULL) 
+        convToLL (BST, node -> right, LL)

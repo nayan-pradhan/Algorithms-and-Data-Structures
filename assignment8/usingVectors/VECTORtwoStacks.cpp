@@ -46,7 +46,7 @@ Stack<T>::Stack(int newSize) {
 // push for stack
 template<class T>
 bool Stack<T>::push(T x) {
-    //no need to check for max size here as it is already done in queoe push
+    //no need to check for max size here as it is already done in queue push
     // if ((currentSize) == size) { //if stack size is full!
     //     std::cout << "Overflow! Cannot Push!" << std::endl;
     //     return false;
@@ -70,7 +70,7 @@ bool Stack<T>::isEmpty() {
 // pop for stack
 template<class T>
 bool Stack<T>::pop() {
-    //no need to check if no elem in stack as already done in queoe pop
+    //no need to check if no elem in stack as already done in queue pop
     // if (currentSize == 0) { //is stack empty?
     //     std::cout << "List Empty! Cannot pop any element!" << std::endl;
     //     return false;
@@ -113,8 +113,6 @@ template<class T>
 T Stack<T>::getDataIn(int i) {
     return myStack[i];
 }
-
-///////////////////////////////////////////////////////////////////////////////
 
 // for queue
 template<class T>
@@ -204,8 +202,6 @@ void Queue<T>::print() {
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////
-
 // main
 int main() {
     Queue<int> myQueue(5);
@@ -213,11 +209,11 @@ int main() {
         myQueue.push(i); //pushing the element into myQueue
         myQueue.print(); //check
     }
-    while (myQueue.isEmpty() != true) { //checking if queoe is empty
+    while (myQueue.isEmpty() != true) { //checking if queue is empty
         myQueue.print(); //check
-        myQueue.pop(); //while queoe is not empty, pop elements
+        myQueue.pop(); //while queue is not empty, pop elements
     }
-    myQueue.print(); //print queoe
-    myQueue.pop(); //check what happens when pop is called in empty queoe
+    myQueue.print(); //print queue
+    myQueue.pop(); //check what happens when pop is called in empty queue
     return 0;
 }
