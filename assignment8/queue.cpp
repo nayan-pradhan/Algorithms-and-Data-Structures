@@ -1,5 +1,11 @@
+/* 
+    CH-231-A
+    8.1b cpp 
+    Nayan Man Singh Pradhan 
+    n.pradhan@jacobs-university.de
+*/
+
 #include <iostream>
-#include <chrono>
 
 template <class T>
 class Stack {
@@ -79,62 +85,52 @@ Stack<T>::Stack (int newSize) {
 //push
 template <class T>
 bool Stack<T>::push (T x) {
-    try {
-        if (currentSize == size-1) {
-            throw "overflow";
-        }
-        // std::cout << "Pushing " << x << std::endl;
-        struct StackNode *newElem;
-        newElem = new struct StackNode;
-        newElem -> data = x;
-        if (currentSize == -1) {
-            top = newElem;
-            bottom = newElem;
-            top -> next = nullptr;
-            currentSize++;
-            return true;
-        }
-        top -> next = newElem;
+    if (currentSize == size-1) {
+        throw std::logic_error("Overflow");
+        return false;
+    }
+    // std::cout << "Pushing " << x << std::endl;
+    struct StackNode *newElem;
+    newElem = new struct StackNode;
+    newElem -> data = x;
+    if (currentSize == -1) {
         top = newElem;
+        bottom = newElem;
         top -> next = nullptr;
         currentSize++;
         return true;
     }
-    catch (...) {
-        std::cout << "Stack Overflow! Cannot push!" << std::endl;
-        return false;
-    }
+    top -> next = newElem;
+    top = newElem;
+    top -> next = nullptr;
+    currentSize++;
+    return true;
 }
 
 //pop
 template <class T>
 T Stack<T>::pop() {
-    try {
-        if (top == nullptr) {
-            throw "empty";
-        }
-        struct StackNode *pointer = top;
-        T temp = pointer -> data;
-        // std::cout << "Popping ";
-        if (top == bottom) {
-            top = nullptr;
-            bottom = nullptr;
-            currentSize--;
-            return temp;
-        }
-        delete top;
-        struct StackNode *iterator = bottom;
-        while (iterator -> next != top) {
-            iterator = iterator -> next;
-        }
-        top = iterator;
+    if (top == nullptr) {
+        throw std::logic_error("Underflow");
+        return false;
+    }
+    struct StackNode *pointer = top;
+    T temp = pointer -> data;
+    // std::cout << "Popping ";
+    if (top == bottom) {
+        top = nullptr;
+        bottom = nullptr;
         currentSize--;
         return temp;
     }
-    catch (...) {
-        std::cout << "Stack is empty! Unable to Pop!" << std::endl;
-        return -1;
-    }    
+    delete top;
+    struct StackNode *iterator = bottom;
+    while (iterator -> next != top) {
+        iterator = iterator -> next;
+    }
+    top = iterator;
+    currentSize--;
+    return temp;
 }
 
 //isEmpty
@@ -151,25 +147,19 @@ bool Stack<T>::isEmpty() {
 //print
 template <class T>
 void Stack<T>::print() {
-    try {
-        if (currentSize == -1) {
-            throw "no elem";
-        }
-        struct StackNode *pointer;
-        pointer = bottom;
-        while (pointer != top) {
-            std::cout << pointer -> data << " ";
-            pointer = pointer -> next;
-        }
-        if (pointer == top) {
-            std::cout << pointer -> data;
-        }
-        std::cout << std::endl;
+    if (currentSize == -1) {
+        throw std::logic_error("Underflow");
     }
-    catch (...) {
-        std::cout << "Unable to Print Empty Stack!" << std::endl;
-        return;
+    struct StackNode *pointer;
+    pointer = bottom;
+    while (pointer != top) {
+        std::cout << pointer -> data << " ";
+        pointer = pointer -> next;
     }
+    if (pointer == top) {
+        std::cout << pointer -> data;
+    }
+    std::cout << std::endl;
 }
 
 //destructor
@@ -226,47 +216,36 @@ Queue<T>::Queue(int newSize) {
 //push method for queue
 template <class T>
 bool Queue<T>::push(T x) {
-    try {
-        if (myStack1.getSize() == myStack1.getCurrentSize()) {
-            throw "overflow";
-        }
-        std::cout << "Pushing " << x << std::endl;
-        myStack1.push(x);
-        myStack2.emptyStack();
-        int i = 0;
-        while (i <= myStack1.getCurrentSize()) {
-            myStack2.push(myStack1.returnElem(myStack1.getCurrentSize()-i));
-            i++;
-        }
-        return true;
-    }
-    catch (...) {
-        std::cout << "Queue Full! Unable to Push!" << std::endl;
+    if (myStack1.getSize() == myStack1.getCurrentSize()) {
+        throw std::logic_error("Overflow");
         return false;
     }
+    myStack1.push(x);
+    myStack2.emptyStack();
+    int i = 0;
+    while (i <= myStack1.getCurrentSize()) {
+        myStack2.push(myStack1.returnElem(myStack1.getCurrentSize()-i));
+        i++;
+    }
+    std::cout << "Pushing " << x << std::endl;
+    return true;
 }
 
 //pop method for queue
 template <class T>
 T Queue<T>::pop() {
-    try {
-        if (myStack1.getCurrentSize() == myStack1.getSize()) {
-            throw "empty";
-        }
-        std::cout << "Popping ";
-        T temp = myStack2.pop();
-        myStack1.emptyStack();
-        int i = 0;
-        while (i <= myStack2.getCurrentSize()) {
-            myStack1.push(myStack2.returnElem(myStack2.getCurrentSize()-i));
-            i++;
-        }
-        return temp;
+    if (myStack1.getCurrentSize() == myStack1.getSize()) {
+        throw std::logic_error("Underflow");
     }
-    catch (...) {
-        std::cout << "Queue Empty! Cannot Pop!" << std::endl;
-        return -1;
+    std::cout << "Popping ";
+    T temp = myStack2.pop();
+    myStack1.emptyStack();
+    int i = 0;
+    while (i <= myStack2.getCurrentSize()) {
+        myStack1.push(myStack2.returnElem(myStack2.getCurrentSize()-i));
+        i++;
     }
+    return temp;
 }
 
 //printer for queue
@@ -294,18 +273,30 @@ Queue<T>::~Queue() {
     //the stacks is where data is allocated
 }
 
+//main
 int main() {
-    Queue<int> myQueue(5);
-    for (int i = 1; i < 8; i++) {
-        myQueue.push(i);
-        if (i == 3) {
-            myQueue.print();
+    Queue<int> myQueue(5); //making queue of 5 elem
+    try { //for pushing
+        for (int i = 1; i < 8; i++) {
+            myQueue.push(i); //push
+            myQueue.print(); //print
         }
     }
-    myQueue.print();
-    while (myQueue.isEmpty() != 1) {
-        std::cout << myQueue.pop() << std::endl;
-        myQueue.print();
+    catch (std::logic_error) { //if overflow
+        std::cout << "Queue Full!" << std::endl;
     }
-    std::cout << myQueue.pop() << std::endl;
+
+    myQueue.print(); //print queue
+    std::cout << "is empty: " << myQueue.isEmpty() << std::endl; //check
+
+    try { //for popping
+        while (myQueue.isEmpty() != 1) { //while queue is not empty
+            std::cout << myQueue.pop() << std::endl; //pop
+            myQueue.print(); //print queue
+        }
+        std::cout << myQueue.pop() << std::endl; //try pop in empty queue
+    }
+    catch (std::logic_error) { //if underflow 
+        std::cout << "Queue Empty!" << std::endl;
+    }
 }
