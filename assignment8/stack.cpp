@@ -1,3 +1,10 @@
+/* 
+    CH-231-A
+    8.1a cpp 
+    Nayan Man Singh Pradhan 
+    n.pradhan@jacobs-university.de
+*/
+
 #include <iostream>
 #include <chrono>
 
@@ -43,62 +50,52 @@ Stack<T>::Stack (int newSize) {
 //push
 template <class T>
 bool Stack<T>::push (T x) {
-    try {
-        if (currentSize == size-1) {
-            throw "overflow";
-        }
-        // std::cout << "Pushing " << x << std::endl;
-        struct StackNode *newElem;
-        newElem = new struct StackNode;
-        newElem -> data = x;
-        if (currentSize == -1) {
-            top = newElem;
-            bottom = newElem;
-            top -> next = nullptr;
-            currentSize++;
-            return true;
-        }
-        top -> next = newElem;
+    if (currentSize == size-1) {
+        throw std::logic_error("Stack Full");
+        return false;
+    }
+    // std::cout << "Pushing " << x << std::endl;
+    struct StackNode *newElem;
+    newElem = new struct StackNode;
+    newElem -> data = x;
+    if (currentSize == -1) {
         top = newElem;
+        bottom = newElem;
         top -> next = nullptr;
         currentSize++;
         return true;
     }
-    catch (...) {
-        std::cout << "Stack Overflow! Cannot push!" << std::endl;
-        return false;
-    }
+    top -> next = newElem;
+    top = newElem;
+    top -> next = nullptr;
+    currentSize++;
+    return true;
 }
 
 //pop
 template <class T>
 T Stack<T>::pop() {
-    try {
-        if (top == nullptr) {
-            throw "empty";
-        }
-        struct StackNode *pointer = top;
-        T temp = pointer -> data;
-        // std::cout << "Popping ";
-        if (top == bottom) {
-            top = nullptr;
-            bottom = nullptr;
-            currentSize--;
-            return temp;
-        }
-        delete top;
-        struct StackNode *iterator = bottom;
-        while (iterator -> next != top) {
-            iterator = iterator -> next;
-        }
-        top = iterator;
+    if (top == nullptr) {
+        throw std::logic_error("Empty Stack");
+        return false;
+    }
+    struct StackNode *pointer = top;
+    T temp = pointer -> data;
+    // std::cout << "Popping ";
+    if (top == bottom) {
+        top = nullptr;
+        bottom = nullptr;
         currentSize--;
         return temp;
     }
-    catch (...) {
-        std::cout << "Stack is empty! Unable to Pop!" << std::endl;
-        return -1;
-    }    
+    delete top;
+    struct StackNode *iterator = bottom;
+    while (iterator -> next != top) {
+        iterator = iterator -> next;
+    }
+    top = iterator;
+    currentSize--;
+    return temp;
 }
 
 //isEmpty
@@ -115,25 +112,20 @@ bool Stack<T>::isEmpty() {
 //print
 template <class T>
 void Stack<T>::print() {
-    try {
-        if (currentSize == -1) {
-            throw "no elem";
-        }
-        struct StackNode *pointer;
-        pointer = bottom;
-        while (pointer != top) {
-            std::cout << pointer -> data << " ";
-            pointer = pointer -> next;
-        }
-        if (pointer == top) {
-            std::cout << pointer -> data;
-        }
-        std::cout << std::endl;
+    if (currentSize == -1) {
+        throw std::logic_error("Empty Stack");
     }
-    catch (...) {
-        std::cout << "Unable to Print Empty Stack!" << std::endl;
-        return;
+    // std::cout << "myStack: "; 
+    struct StackNode *pointer;
+    pointer = bottom;
+    while (pointer != top) {
+        std::cout << pointer -> data << " ";
+        pointer = pointer -> next;
     }
+    if (pointer == top) {
+        std::cout << pointer -> data;
+    }
+    std::cout << std::endl;
 }
 
 //destructor
@@ -148,16 +140,31 @@ Stack<T>::~Stack() {
     delete bottom;
     // std::cout << "Destructor called!" << std::endl;
 }
-/*
+
+/* 
+//main
 int main() {
-    Stack<int> myStack(5);
-    for (int i = 1; i < 8; i++) {
-        myStack.push(i);
-        myStack.print();
+    Stack<int> myStack(5); //making a stack of 5 elements
+    try { //for pushing
+        for (int i = 1; i < 8; i++) { //push more than 5 elem
+            myStack.push(i); //push
+            myStack.print(); //print
+        }
     }
-    while (myStack.isEmpty() != 1) {
-        std::cout << myStack.pop() << std::endl;
-        myStack.print();
+    catch (std::logic_error) { //when overflow
+        std::cout << "Stack is Full!" << std::endl;
+    }
+
+    std::cout << "is empty: " << myStack.isEmpty() << std::endl;
+
+    try {    
+        while (myStack.isEmpty() != 1) {
+            std::cout << myStack.pop() << std::endl;
+            myStack.print();
+        }
+    }
+    catch(std::logic_error) {
+        std::cout << "Stack is Empty!" << std::endl;
     }
     std::cout << "is empty: " << myStack.isEmpty() << std::endl;
 }
