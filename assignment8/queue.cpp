@@ -185,6 +185,7 @@ Stack<T>::~Stack() {
     // std::cout << "Destructor called!" << std::endl;
 }
 
+//queue
 template <class T>
 class Queue {
     private:
@@ -200,12 +201,18 @@ class Queue {
         void print();
 };
 
+//default constructor
 template <class T>
 Queue<T>::Queue() {
+    myStack1.setCurrentSize(-1);
+    myStack2.setCurrentSize(-1);
+    myStack1.setSize(-1);
+    myStack2.setSize(-1);
     Stack<T> myStack1;
     Stack<T> myStack2;    
 }
 
+//parametric constructor
 template <class T>
 Queue<T>::Queue(int newSize) {
     myStack1.setCurrentSize(-1);
@@ -216,6 +223,7 @@ Queue<T>::Queue(int newSize) {
     Stack<T> myStack2(newSize);
 }
 
+//push method for queue
 template <class T>
 bool Queue<T>::push(T x) {
     try {
@@ -238,6 +246,7 @@ bool Queue<T>::push(T x) {
     }
 }
 
+//pop method for queue
 template <class T>
 T Queue<T>::pop() {
     try {
@@ -260,12 +269,14 @@ T Queue<T>::pop() {
     }
 }
 
+//printer for queue
 template <class T>
 void Queue<T>::print() {
     std::cout << "My Queue: ";
-    myStack2.print();
+    myStack2.print(); //myStack2 simulates queue
 }
 
+//isEmpty method for queue
 template <class T>
 bool Queue<T>::isEmpty() {
     if (myStack2.getCurrentSize() == -1) {
@@ -276,6 +287,7 @@ bool Queue<T>::isEmpty() {
     }
 }
 
+//destructor
 template <class T>
 Queue<T>::~Queue() {
     //destructor of the stacks are called
