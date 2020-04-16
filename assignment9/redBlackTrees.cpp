@@ -1,3 +1,10 @@
+/* 
+    CH-231-A
+    9b cpp 
+    Nayan Man Singh Pradhan 
+    n.pradhan@jacobs-university.de
+*/
+
 #include <iostream>
 
 enum Color {RED, BLACK};
@@ -16,23 +23,33 @@ class RedBlackTree {
         void rbTransplant(RedBlackTree T, Node *u, Node *v);
     public:
         RedBlackTree();
+        ~RedBlackTree();
         void printTree (struct Node *root);
-        void insert (RedBlackTree myTree, int newElem);
-        void insertFixup(RedBlackTree myTree, struct Node* newElem);
-        void deleteNode (RedBlackTree myTree, Node *&elem);
+        void insert (int newElem);
+        void insertFixup(struct Node* newElem);
+        void deleteNode (RedBlackTree T, Node *&elem);
         void deleteFixUp (RedBlackTree myTree, Node *&elem);
         Node *predecessor(const Node *&x);
         Node *successor(const Node *&x);
         Node *getMinimum(Node *x);
         Node *getMaximum(Node *x);
         Node *search(RedBlackTree myTree, int elem);
+        Node *getRoot();
 };
+
+Node* RedBlackTree::getRoot() {
+    return root;
+}
 
 RedBlackTree::RedBlackTree() {
     root = NULL;
 }
 
-void RedBlackTree::printTree (struct Node *root) {
+RedBlackTree::~RedBlackTree() {
+    std::cout << "Destructor is called!" << std::endl;
+}
+
+void RedBlackTree::printTree(struct Node *root) {
     if (root != NULL) {
         printTree (root -> left);
         std::cout << root -> data << " ";
@@ -82,11 +99,15 @@ void RedBlackTree::rotateRight(Node *&x) {
     y -> parent = x;
 }
 
-void RedBlackTree::insert(RedBlackTree myTree ,int elem) {
-    struct Node *newElem = NULL, *x = NULL, *y = NULL;
+void RedBlackTree::insert(int elem) {
+    struct Node *newElem = new struct Node;
+    struct Node *x = NULL;
+    struct Node *y = NULL;
+    newElem -> parent = NULL;
+    newElem -> left = NULL;
+    newElem -> right = NULL;
     newElem -> data = elem;
-    x = myTree.root;
-    y = NULL;
+    x = root;
     while(x != NULL) {
         y = x;
         if ((newElem -> data) < (x -> data)) {
@@ -98,24 +119,50 @@ void RedBlackTree::insert(RedBlackTree myTree ,int elem) {
     }
     newElem -> parent = y;
     if (y == NULL) {
-        myTree.root = newElem;
+        root = newElem;
     }
     else if ((newElem -> data) < (y -> data)) {
         y -> left = newElem;
     }
     else {
-        y -> right = root;
+        y -> right = newElem;
     }
     newElem -> left = NULL;
     newElem -> right = NULL;
     newElem -> color = RED;
-    insertFixup (myTree, newElem);
+        // if (x != NULL) 
+        // std::cout << "x=" << x-> data << std::endl;
+        // if(y != NULL)
+        // std::cout << "y="<< y-> data<< std::endl;
+        // if(root != NULL)
+        // std::cout << "root=" << root -> data << std::endl;
+    insertFixup (newElem);
+    delete newElem;
 }
 
-void RedBlackTree::insertFixup(RedBlackTree myTree, struct Node *newElem) {
-    while (newElem -> parent -> color == RED) {
-        if (newElem -> parent == newElem -> parent -> parent -> left) {
-            struct Node *y = newElem -> parent -> parent -> right;
+void RedBlackTree::insertFixup(struct Node *newElem) {
+    std::cout << "newElem -> " << newElem -> data << std::endl;
+    std::cout << "root -> " <<  root -> data << std::endl;
+    if (newElem == root) {
+        return;
+    }
+    while (newElem -> parent -> color == RED) {    
+        struct Node *y = new struct Node;
+        if (newElem -> parent -> parent != NULL) {
+            std::cout << newElem  -> parent -> parent -> data<< std::endl;
+        }
+        if (newElem -> parent -> parent == NULL) {
+            std::cout << "INSIDE" << std::endl;
+            newElem -> parent -> color = BLACK;
+            newElem -> color = BLACK;
+            newElem -> right = NULL;
+            newElem -> left = NULL;
+            return;
+        }
+        std::cout << "hello" << std::endl;
+        if ((newElem -> parent) == (newElem -> parent -> parent -> left)) {
+            std::cout << "henlo" << std::endl;
+            y = newElem -> parent -> parent -> right;
             if (y -> color == RED) {
                 newElem -> parent -> color = BLACK;
                 y -> color = BLACK;
@@ -132,7 +179,7 @@ void RedBlackTree::insertFixup(RedBlackTree myTree, struct Node *newElem) {
             rotateRight (newElem -> parent -> parent);
         }
         else {
-            struct Node *y = newElem -> parent -> parent -> left; //left uncle
+            y = newElem -> parent -> parent -> left; //left uncle
             if (y -> color == RED) {
                 newElem -> parent -> color = BLACK;
                 y -> color = BLACK;
@@ -148,6 +195,8 @@ void RedBlackTree::insertFixup(RedBlackTree myTree, struct Node *newElem) {
             newElem -> parent -> parent -> color = RED;
             rotateRight (newElem -> parent -> parent);
         }
+        std::cout << "whats up" << std::endl;
+        delete y;
     }
 }
 
@@ -296,10 +345,4 @@ Node* RedBlackTree::search(RedBlackTree myTree, int elem) {
         }
     }
     return pointer;
-}
-
-int main() {
-    RedBlackTree myTree;
-    std::cout << "Helllo" << std::endl;
-    myTree.insert(myTree, 1);
 }
