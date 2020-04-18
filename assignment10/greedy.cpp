@@ -35,6 +35,7 @@ class ListOfActivity {
         void addActivity(Activity a);
         void printList();
         void sort();
+        Activity greedySolution();
 };
 
 // constructor
@@ -79,6 +80,20 @@ void ListOfActivity::sort() {
     }
 }
 
+// greedy solution
+Activity ListOfActivity::greedySolution() {
+    Activity latestStartTime;
+    latestStartTime.setStart(0);
+    latestStartTime.setFinish(0);
+    for (int i = 0; i < activityList.size(); i++) {    
+        if (activityList[i].getStart() > latestStartTime.getStart()) {
+            latestStartTime.setStart(activityList[i].getStart());
+            latestStartTime.setFinish(activityList[i].getFinish());
+        }
+    }
+    return latestStartTime;
+}
+
 int main() {
     ListOfActivity activityList;
     Activity a1(1,4), a2(0, 6), a3(3, 5), a4(3, 8), a5(12, 14), a6(2, 13),
@@ -107,4 +122,7 @@ int main() {
     std::cout << "Descending Order List: ";
     activityList.printList();
 
+    std::cout << "Activity With Latest Starting Time: ";
+    activityList.greedySolution().printActivity();
+    std::cout << std::endl;
 }
