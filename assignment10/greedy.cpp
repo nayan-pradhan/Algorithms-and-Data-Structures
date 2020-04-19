@@ -36,6 +36,9 @@ class ListOfActivity {
         void printList();
         void sort();
         Activity greedySolution();
+        ListOfActivity returnListSolution();
+        int size(){return activityList.size();}
+        Activity elemAt(int i) {return activityList[i];}
 };
 
 // constructor
@@ -63,6 +66,7 @@ void ListOfActivity::printList() {
     std::cout << std::endl;
 }
 
+// I was just practicing here, sorting is NOT implemented anywhere else
 // I use insertion sort here because it is fast and easy to write
 void ListOfActivity::sort() {
     for (int j = 1; j < activityList.size(); j++) {
@@ -80,7 +84,7 @@ void ListOfActivity::sort() {
     }
 }
 
-// greedy solution
+// returns the latest start time
 Activity ListOfActivity::greedySolution() {
     Activity latestStartTime;
     latestStartTime.setStart(0);
@@ -94,14 +98,62 @@ Activity ListOfActivity::greedySolution() {
     return latestStartTime;
 }
 
+// returns final solution
+ListOfActivity ListOfActivity::returnListSolution() {
+    ListOfActivity Solution;
+    while (!activityList.empty()) {
+        Activity latestStartTime;
+        latestStartTime.setStart(0);
+        latestStartTime.setFinish(0);
+        int pointer = 0;
+        for (int i = 0; i < activityList.size(); i++) {
+            if (activityList[i].getStart() > latestStartTime.getStart()) {
+                latestStartTime.setStart(activityList[i].getStart());
+                latestStartTime.setFinish(activityList[i].getFinish());
+                pointer = i;
+            }
+        }
+        
+        if (latestStartTime.getStart() == 0 && latestStartTime.getFinish() == 0) {
+            break;
+        }
+        bool overlapCheck = false;
+        for (int i = 0; i < Solution.size(); i++) {
+            if (latestStartTime.getFinish() > Solution.elemAt(i).getStart()) {
+                overlapCheck = true;
+            }
+        }
+
+        if (overlapCheck == false) {
+            Solution.addActivity(latestStartTime);
+        }
+
+        activityList.erase(activityList.begin()+pointer);
+    }
+
+    /*
+        The above returns the solution in reversed order. 
+        To print in proper order, I just copied the activities from back
+        to front in a new ListOfActivity. 
+    */
+    ListOfActivity InCorrectOrderSolution;
+    for (int i = Solution.size()-1; i >= 0; i--) {
+        InCorrectOrderSolution.addActivity(Solution.elemAt(i));
+    }
+    return InCorrectOrderSolution;
+}
+
+// main
 int main() {
-    ListOfActivity activityList;
+    ListOfActivity activityList; // making a list of activity
+    // activities (according to Professor's slide but not in order)
     Activity a1(1,4), a2(0, 6), a3(3, 5), a4(3, 8), a5(12, 14), a6(2, 13),
         a7(8, 11), a8(8, 12), a9(6, 10), a10(5, 7), a11(5, 9);
 
     // a1.printActivity();
     // std::cout << std::endl;
 
+    // adding the activities
     activityList.addActivity(a1);
     activityList.addActivity(a2);
     activityList.addActivity(a3);
@@ -114,15 +166,25 @@ int main() {
     activityList.addActivity(a10);
     activityList.addActivity(a11);
 
+    // printing the unsorted list
     std::cout << "Unsorted List: ";
     activityList.printList();
+    std::cout << std::endl;
 
-    activityList.sort();
+    // implemented sort to practice (not used in program)
+    // activityList.sort();
 
-    std::cout << "Descending Order List: ";
-    activityList.printList();
+    // std::cout << "Descending Order List: ";
+    // activityList.printList();
 
+    // printing activity with latest starting time
     std::cout << "Activity With Latest Starting Time: ";
     activityList.greedySolution().printActivity();
+    std::cout << std::endl;
+
+    // printing activity list after greedy solution
+    std::cout << std::endl;
+    std::cout << "Greedy Solution:";
+    activityList.returnListSolution().printList();
     std::cout << std::endl;
 }
