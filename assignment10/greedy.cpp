@@ -100,34 +100,45 @@ Activity ListOfActivity::greedySolution() {
 
 // returns final solution
 ListOfActivity ListOfActivity::returnListSolution() {
-    ListOfActivity Solution;
-    while (!activityList.empty()) {
-        Activity latestStartTime;
-        latestStartTime.setStart(0);
+    ListOfActivity Solution; // creating a list of activity called solution
+    while (!activityList.empty()) { // while activity list is not empty
+        Activity latestStartTime; // creating a temp activity
+        // the start and finish time of latestStartTime is initialzied to 0 
+        latestStartTime.setStart(0); 
         latestStartTime.setFinish(0);
-        int pointer = 0;
+        int pointer = 0; // just an index
+        // finding the latest start time
         for (int i = 0; i < activityList.size(); i++) {
             if (activityList[i].getStart() > latestStartTime.getStart()) {
                 latestStartTime.setStart(activityList[i].getStart());
                 latestStartTime.setFinish(activityList[i].getFinish());
-                pointer = i;
+                pointer = i; // pointer used later
             }
         }
         
-        if (latestStartTime.getStart() == 0 && latestStartTime.getFinish() == 0) {
+        // if the latest is the temp activity, stop
+        if (latestStartTime.getStart() == 0 && 
+                latestStartTime.getFinish() == 0) {
             break;
         }
+
+        /* 
+            bool to check if the latestStartTime activity overlaps with other 
+            activities in the final solution 
+        */
         bool overlapCheck = false;
-        for (int i = 0; i < Solution.size(); i++) {
+        for (int i = 0; i < Solution.size(); i++) { // goes through activities in sol
             if (latestStartTime.getFinish() > Solution.elemAt(i).getStart()) {
-                overlapCheck = true;
+                overlapCheck = true; // if overlap occurs
             }
         }
-
+         
+        // if overlap does not occur, add activity to solution list
         if (overlapCheck == false) {
             Solution.addActivity(latestStartTime);
         }
 
+        // now erase the latestStartTime activity from the list of activities
         activityList.erase(activityList.begin()+pointer);
     }
 
