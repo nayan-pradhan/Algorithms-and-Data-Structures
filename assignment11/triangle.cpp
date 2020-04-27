@@ -72,3 +72,23 @@ void maxTriangle(std::vector<int>&input) {
     // input[0] will store the final solution derived from dynamic programming
     std::cout << input[0] << std::endl;
 }   
+
+/* 
+    How the dynamic program runs:
+
+    1                  a
+                     /   \ 
+    2              b       c 
+                 /  \    /  \ 
+    3          d      e      f  
+             /  \   /   \  /   \
+    4      g      h      i      j 
+  
+    This is just a small example illustrating how the program calculates the 
+    maximum sum. We start from the first element of the row above the last row
+    (in our example: row 3 -> d). We then compare the left and right nodes
+    (here g and h) and add the maximum between them with d, updating the value
+    of d. Them, we continue doing this for the other nodes until we reach the 
+    top of the triangle. At the end of our dynamic solution, the top of the 
+    triangle will contain the maximum sum of the nodes in the triangle.
+*/
