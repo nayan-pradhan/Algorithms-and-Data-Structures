@@ -1,9 +1,9 @@
 /* 
     CH-231-A
-    a5_1a 
+    a5_1a cpp
     Nayan Man Singh Pradhan 
     n.pradhan@jacobs-university.de
-*/
+*/ 
 
 #include <iostream>
 #include <math.h>
