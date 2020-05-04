@@ -59,16 +59,44 @@ void getInput(int &n, int &p, int &q, int **&adj_matrix) {
             }
         }
     }
+
+    /* 
+        for the index of city, the user deals with numbers 1 -> n while
+        the program runs from 0 -> n-1. When printing and entering data,
+        the program uses 0+1 -> n-1+1 => 1 -> n for convenience. 
+    */
+
+    // just formatting part 
+    if (n > 1) {
+        std::cout << "Cities: ";
+        for (int i = 0; i < n; i++) {
+                if (i != n-1)
+                    std::cout << i+1 << ", ";
+                else 
+                    std::cout << "and " << i+1 << ".";
+        }
+    }
+    else {
+        std::cout << "Only city: 1";
+    }
+    int tempP, tempQ; // temporary storage for your and your friend's city
+    std::cout << std::endl;
     std::cout << "Your city: ";
-    std::cin >> p; // enter your city
+    std::cin >> tempP; // enter your city
     std::cout << "Friend's city: ";
-    std::cin >> q; // enter your friend's city
+    std::cin >> tempQ; // enter your friend's city
+    // so that user can enter city name from 1 -> n
+    p = tempP - 1;
+    q = tempQ - 1;
 }
 
 // main solution
 int find_meetup_city(int **adj_matrix, int n, int p, int q) {
+    if (n == 1) {
+        return 1;
+    }
     // Floyd Warshall Algorithm:
-    // Gives us the shortest path between two cities for all cities
+    // Gives us the shortest path between two cities between all cities
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             for (int k = 0; k < n; k++) {
@@ -94,7 +122,9 @@ int find_meetup_city(int **adj_matrix, int n, int p, int q) {
             }
         }
     }
-    return best_meetup_city;
+    // to account for city index form 1 -> n instead of 0 -> n-1
+    int IndexUpdated = best_meetup_city+1;
+    return IndexUpdated;
 }
 
 // free the dynamically allocated memory
@@ -103,4 +133,5 @@ void freeMemory(int n, int **&adj_matrix) {
         delete adj_matrix[i];
     }
     delete[] adj_matrix;
+    // std::cout << "memory freed!" << std::endl;
 }
