@@ -1,0 +1,8 @@
+out_1: red_black_tree.cpp
+	g++ -Wall -o red_black_tree red_black_tree.cpp
+	./red_black_tree
+
+clean:
+	rm *.o out_*
+
+all: out_1 out_2
