@@ -41,7 +41,7 @@ class Complex {
         }
 
         //declarationf for operation overloading for << (overloaded later)
-        friend ostream& operator <<(ostream &output, const Complex &c);
+        friend ostream& operator << (ostream &output, const Complex &c);
 
         //operator overloading for ==
         bool operator==(const Complex obj) {

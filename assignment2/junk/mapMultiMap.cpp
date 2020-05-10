@@ -17,16 +17,15 @@ using namespace std;
 // }
 
 int main() {
-    multimap <char, int> mymultimap;
+    std::multimap<char, int> myMM;
     for (char ch = 'a'; ch <= 'z'; ch++) {
-        mymultimap[ch] = (int) ch;
+        myMM[ch] = (int)ch;
     }
     multimap <char, int>::iterator itr;
-    for (itr = mymultimap.begin(); itr != mymultimap.end(); itr++) {
-        cout << (*itr).first << " " << (*itr).second;
-        cout << endl;
+    for (itr = myMM.begin(); itr != myMM.end(); itr++) {
+        cout << itr->first << " " << itr->second << endl;
     }   
-    multimap['k'] = 10000;
-    cout << mymultimap['k'];
+    myMM['k'] = 10000;
+    cout << myMM['k'];
     return 0; 
 }

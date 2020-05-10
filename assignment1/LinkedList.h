@@ -154,7 +154,6 @@ class linkedList {
                 }
                 std::cout << std::endl; //new line after list is printed
             }
-
         }
         void numOfElements() { //for num of elements
             std::cout << "Number of elements in list: " << numOfElem << 
