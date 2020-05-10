@@ -45,5 +45,6 @@ int main() {
     //
     Translator.insert(std::pair<std::string, std::string>("Termin", "Meeting")); // learn this
     //
+    Translator.insert(std::pair<std::string, std::string>("Pause", "Break"));
     practice(Translator);
 }
