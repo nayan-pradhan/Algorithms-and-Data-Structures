@@ -1,0 +1,8 @@
+selectionSort(A, n)
+for i = 1 to n
+    min = i
+    for j = i+1 to n
+        if (A[j] < A[min])
+            min = j
+    if (min != j) 
+        swap (A[j], A[min])
