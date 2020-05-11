@@ -1,0 +1,18 @@
+// Naive algorithm
+
+Fibonacci(n)
+if n = 1 || n = 0
+    return n
+else
+    return Fibonacci(n-1) + Fibonacci(n-2)
+
+T(n) = T(n-1)+T(n-2)+\theta(1)
+
+
+Naive method:
+complexity -> lower bounded by 2^n/2
+Closed Form:
+complexity -> lower bounded by (golden ratio)^n
+           -> asymptotically bounded by (nlg) -> power of numbers approach
+Bottom Up Method -> asymptotically bounded by n
+Matrix Representation -> asymptotically bounded by nlgn
