@@ -1,0 +1,2 @@
+Asymptotically Tight Bound - \theta Notation
+theta g(n) = f(n) belongs to positive constants c1 and c2 such that 0<=c1g(n)<=f(n)<=c2g(n), for all n >= n0
