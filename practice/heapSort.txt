@@ -1,0 +1,30 @@
+1 2 3 4 5 6 7 8 9
+
+parent(i) = floor(i/2)
+left(i) = i*2
+right(i) = i*2 + 1 
+
+maxHeapify(A, i)
+    l = left(i)
+    r = right(i)
+    if l <= A.heapSize && A[l] > A[i]
+        largest = l 
+    else
+        largest = i 
+    else if r <= A.heapSize && A[r] > A[largest]
+        largest = r 
+    if largest != i 
+        swap (A[largest], A[i])
+        maxHeapify(A, largest)
+
+buildMaxHeap(A) 
+    n = A.length
+    for i = floor(n/2) downto 1
+        maxHeapify(A,i)
+
+HeapSort(A)
+    buildMaxHeap(A)
+    for i = A.length downto 2
+        swap(A[i], A[1])
+        A.heapSize--
+        maxHeapify(A, i)

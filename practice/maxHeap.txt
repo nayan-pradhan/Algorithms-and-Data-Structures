@@ -1,0 +1,24 @@
+maximum(A) 
+    return A[1]
+
+heapExtractMax(A)
+    if A.size < 1 
+        error "underflow"
+    max = A[1]
+    A[1] = A[A.heapSize()]
+    A.heapSize--
+    MaxHeapify(A, 1)
+    return max
+
+increaseKey(A, i, key)
+    if key < A[i]
+        error "new key is smaller"
+    A[i] = key
+    while i > 1 && A[i] > parent(A[i])
+        swap (A[i], parent(A[i]))
+        i = parent(i)
+
+insert(A, x) 
+    A.heapSize = A.heapSize+1
+    A[heapSize] = -infinity
+    increaseKey(A, A[heapSize], x)
