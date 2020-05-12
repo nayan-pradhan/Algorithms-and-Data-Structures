@@ -1,0 +1,10 @@
+countingSort(A)
+    for i = 1 to k // k is the largest elem in input
+        C[i] = 0
+    for j = 1 to n
+        C[A[j]] += 1
+    for i = 2 to k
+        C[i] += C[i-1]
+    for j = n downto 1
+        B[C[A[j]]] = A[j]
+        C[A[j]] = C[A[j]]-1 
