@@ -24,6 +24,7 @@ insertEnd(List, x)
     x -> next = NULL
     List.tail = x
 
+// insert in middle
 insertMid(List, x, pos)
     if x == 1 
         insertBeg(List, x)
@@ -32,5 +33,10 @@ insertMid(List, x, pos)
     int count = 0
     int *pointer = List.head
     while (count != pos)
-        
-    
+        pointer = pointer -> next
+        count++
+    x -> next = pointer -> next
+    pointer -> next -> prev = x
+    pointer -> next = x
+    x -> prev = pointer
+return List
