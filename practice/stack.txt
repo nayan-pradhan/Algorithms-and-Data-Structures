@@ -1,0 +1,16 @@
+bool stackEmpty(S)
+    if S.top != 0 
+        return false
+    else return true
+
+void push(S, x)
+    if S.top == S.maxSize
+        throw "stack full"
+    S.top++
+    S[S.top] = x
+
+T pop(S)
+    if S.top == 0
+        throw "empty stack"
+    S.top--
+    return S[top+1]
