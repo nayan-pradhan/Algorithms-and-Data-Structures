@@ -40,3 +40,15 @@ insertMid(List, x, pos)
     pointer -> next = x
     x -> prev = pointer
 return List
+
+// Delete data
+delete (L, x)
+    if List.head = List.tail    
+        delete (List.head)
+        return "deletad all elem"
+    if x->prev != NULL
+        x -> prev -> next = x -> next
+    else
+        List.head = x->next
+    if x->next != NULL
+        x->next->prev = x->prev
