@@ -13,3 +13,24 @@ insertBeg(List, x)
         list.head -> prev = x
     list.head = x
     x -> prev = NULL
+    return x
+
+// insertion end
+insertEnd(List, x)
+    if (List.head == NULL)
+        return x
+    List.tail -> next = x
+    x -> prev = List.tail
+    x -> next = NULL
+    List.tail = x
+
+insertMid(List, x, pos)
+    if x == 1 
+        insertBeg(List, x)
+    is x = List->tail.index
+        insertEnd(list, x)
+    int count = 0
+    int *pointer = List.head
+    while (count != pos)
+        
+    
