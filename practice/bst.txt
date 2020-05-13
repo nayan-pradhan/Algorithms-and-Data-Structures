@@ -40,3 +40,13 @@ treeMax(x)
         x = x->right
     return x
 
+// finding successor
+successor(x) 
+    if (x->right != NULL) 
+        return treeMin(x->right)
+    y = x.p
+    while (y!= NULL && x=y->right)
+        x=y
+        y=y.p
+    return y
+    
