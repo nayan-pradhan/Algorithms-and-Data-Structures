@@ -1,0 +1,10 @@
+buckeSort(A)
+    n = A.size
+    create array B[0, 1 ... n-1]
+    for i = 0 to n-1
+        initialize array B[i] into empty array
+    for i = 1 to n
+        B[n*([A[i]])] = A[i]
+    for i = 0 to n-1
+        sort list using any sorting algorithm
+    concatinate the lists B[0], B[1], ... B[n-1] in order 
