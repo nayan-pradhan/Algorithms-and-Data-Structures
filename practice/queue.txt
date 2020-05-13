@@ -1,0 +1,17 @@
+enqueue(Q,x)
+    if tail[Q] == head[Q]-1
+        throw error "overflow"
+    Q[tail[Q]] = x
+    if (tail[Q] == Q.length)
+        tail[Q] = 1
+    else
+        tail[Q] = tial[Q] + 1
+
+deque(Q)
+    if tail[Q] == head[Q]
+        throw error "underflow"
+    temp = Q[head[Q]]
+    if head[Q] == length[Q]
+        head[Q]=1
+    else    
+        head[Q] = head[Q] + 1

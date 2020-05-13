@@ -1,0 +1,15 @@
+search(List, x)
+    pointer = head[List]
+    while pointer != NULL
+        if pointer->data == x
+            return true
+        pointer = pointer->next
+    return false
+
+// insert at begining
+insertBeg(List, x)
+    x->next = List.head
+    if (List.head != NULL)
+        list.head -> prev = x
+    list.head = x
+    x -> prev = NULL
