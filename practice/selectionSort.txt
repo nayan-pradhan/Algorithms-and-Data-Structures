@@ -4,5 +4,5 @@ for i = 1 to n
     for j = i+1 to n
         if (A[j] < A[min])
             min = j
-    if (min != j) 
-        swap (A[j], A[min])
+    if (min != i) 
+        swap (A[i], A[min])
