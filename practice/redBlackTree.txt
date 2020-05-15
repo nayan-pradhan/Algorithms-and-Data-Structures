@@ -69,3 +69,6 @@ RBInsertFixup(T, z)
             same as above with right
     T.root->color = BLACK
 
+RBDelete(T, z)
+    y = z
+    
