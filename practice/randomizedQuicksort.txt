@@ -6,7 +6,7 @@ QuickSort(A, p, r)
 
 randomPartition(A, p, r)
     rand = random number between p and r
-    swap(p, rand)
+    swap(A[p], A[rand])
     return partation(A, p, r)        
 
 partation(A, p, r)

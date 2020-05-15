@@ -1,3 +1,6 @@
+
+// Insertion Sort //
+
 insertionSort(Array)
     for j = 2 to Array.length()
         key = Array[j]
@@ -9,6 +12,8 @@ insertionSort(Array)
 
 -------------------------------------------------------------------------------
 
+// Selection Sort //
+
 selectionSort(Array)
     min = i 
     for j = i+1 to n
@@ -18,6 +23,8 @@ selectionSort(Array)
         swap (Array[i], Array[min])
 
 -------------------------------------------------------------------------------
+
+// Merge Sort //
 
 mergeSort(Array, p, r)
     if (p < r)
@@ -48,8 +55,14 @@ merge(Array, p, q, r)
 
 -------------------------------------------------------------------------------
 
+// Heap Sort //
+
 heapSort(A)
     buildMaxHeap(A)
+    for (j = A.length downto 2)
+        swap A[j] and A[1]
+        A.heapSize--
+        maxHeapify(A, i)
 
 buildMaxHeap(A)
     n = A.length
@@ -71,3 +84,47 @@ maxHeapify(A, i)
 
 -------------------------------------------------------------------------------
 
+// Quick Sort // 
+
+QuickSort(A, p, r)
+    while p < r 
+        q = Partation(A, p, r)
+        QuickSort(A, p, q-1)
+        QuickSort(A, q+1, r)
+        
+partation(A, p, r)
+    x = A[p]
+    i = p 
+    for j = i+1 to r 
+        if A[j] < x 
+            i++
+            swap A[i] and A[j]
+    swap x and A[i]
+    return i
+
+-------------------------------------------------------------------------------
+
+// Random Quick Sort
+
+QuickSort(A, p, r)
+    while p < r 
+        q = RandomPartation(A, p, r)
+        QuickSort (A, p, q-1)
+        QuickSort (A, q+1, r)
+
+RandomPartation(A, p, r)
+    temp = random number between p and r 
+    swap A[p] and A[temp]
+    return Partation(A, p, r)
+
+Partation(A, p, r)
+    x = A[p]
+    i = p 
+    for j = i+1 to r 
+        if A[j] < x 
+            i++ 
+            swap A[i] and A[j]
+    swap A[i] and x
+    return i
+
+-------------------------------------------------------------------------------
