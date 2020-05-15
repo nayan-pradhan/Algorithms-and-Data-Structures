@@ -48,3 +48,26 @@ merge(Array, p, q, r)
 
 -------------------------------------------------------------------------------
 
+heapSort(A)
+    buildMaxHeap(A)
+
+buildMaxHeap(A)
+    n = A.length
+    for (i = floor(n/2) down to 1)
+        maxHeapify(A, i)
+
+maxHeapify(A, i)
+    l = left(i)
+    r = right(i)
+    if l<=A.length && A[l] > A[i]
+        largest = l 
+    else 
+        largest = i 
+    else if r<=A.length && A[r] > A[largest]
+        largest = r 
+    if largest != i 
+        swap A[i] and A[largest]
+        maxHeapify(A, largest)
+
+-------------------------------------------------------------------------------
+
