@@ -11,12 +11,12 @@ We have items each of with with weight w[i] and profit of p[i] -> item(w, p)
 Our dynamic matrix table is called V 
 
 knapSack(S)
-    for i = 0 to p 
+    for i = 1 to p      // MAKES SENSE FOR PROFIT TO BE STRICTLY GREATER THAN 0
         V[0, i] = 0
     for j = 0 to w 
         V[j, 0] = 0
     for i = 1 to p 
-        for j = 1 to w 
+        for j = 0 to w 
             if w[i] > wSack // cannot be part of solution
                 V[i, j] = V[i-1, j]
             else 
@@ -24,3 +24,5 @@ knapSack(S)
                     V[i, j] = V[i-1, j]
                 else
                     V[i, j] = V[i-1, wSack - w[i]] + p[i]
+
+                    
