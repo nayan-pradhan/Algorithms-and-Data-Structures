@@ -1,0 +1,28 @@
+** NOT SURE IF CORRECT OR INCORRECT **
+
+jobs are provided in array J[J1(20,2), J2(15,2), J3(10,1), J4(5,3), J5(1,3)]
+in the format -> Ji(profit, deadline)
+
+jobSequence()
+    // list is already sorted based on hightest profit
+    n                                           // number of J
+    sol[3]                                       // array that holds the solution
+    bool slot[]                                 // to check whether slot is free or not
+    for i = 2 to n 
+        slot[i] = false
+    
+    sol[deadline[J1]] = J1
+    slot[deadline[J1]] = true
+
+    for i = 2 to n
+        if slot[deadline[J(i)]] == false 
+            add to list
+            slot[deadline[j(i)]] = true 
+        else 
+            int k = 1
+            while (deadline[J(i)] >= 1)
+                if slot[deadline[J(i)]-k] == false
+                    add to list
+                    slot[deadline[J(i)]-k] == true
+                else
+                    k++

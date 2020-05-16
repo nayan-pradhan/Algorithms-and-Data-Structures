@@ -7,7 +7,7 @@ n    3x0  0
 |    4x0  0
 |    5x0  0
         
-The wight of the knapSack = W 
+The weight of the knapSack = W 
 The number of items to choose from = n 
 Each item has weight and benifit in the order (w, b)
 V is the array for creating the dynamic table/matrix
