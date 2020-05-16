@@ -104,7 +104,7 @@ partation(A, p, r)
 
 -------------------------------------------------------------------------------
 
-// Random Quick Sort
+// Random Quick Sort //
 
 QuickSort(A, p, r)
     while p < r 
@@ -129,7 +129,7 @@ Partation(A, p, r)
 
 -------------------------------------------------------------------------------
 
-// Bubble Sort 
+// Bubble Sort //
 
 BubbleSort(A)
     for i = 1 to A.length-1
@@ -139,7 +139,7 @@ BubbleSort(A)
 
 -------------------------------------------------------------------------------
 
-// Counting Sort
+// Counting Sort //
 
 input array A, output array B, and auxiliary array C
 n = A.length, k = largest integer in array
@@ -156,3 +156,23 @@ CountingSort(A)
         C[A[j]] = C[A[j]] - 1
 
 -------------------------------------------------------------------------------
+
+// Radix Sort //
+
+RadixSort (A, d)
+    for i = 1 to d 
+        use a stable sort to sort array A on digit i
+
+-------------------------------------------------------------------------------
+
+// Bucket Sort // 
+
+BucketSort(A)
+    n = A.length 
+    for i = 0 to n-1
+        make B[i] an empty list 
+    for i = 1 to n 
+        insert A[i] into list B[n*A[i]]
+    for i = 0 to n-1
+        sort B[i] using insertionSort (or any other sorting algorithm)
+    concatinate and merge B[1], B[2] ... B[n-1] in order
