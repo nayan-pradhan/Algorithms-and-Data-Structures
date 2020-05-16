@@ -71,4 +71,5 @@ RBInsertFixup(T, z)
 
 RBDelete(T, z)
     y = z
-    
+    y-original-color = y.color
+    if z->left = T

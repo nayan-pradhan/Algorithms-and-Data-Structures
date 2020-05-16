@@ -128,3 +128,31 @@ Partation(A, p, r)
     return i
 
 -------------------------------------------------------------------------------
+
+// Bubble Sort 
+
+BubbleSort(A)
+    for i = 1 to A.length-1
+        for j = A.length to i+1
+            if A[j] < A[j-1]
+                swap A[j] and A[j-1]
+
+-------------------------------------------------------------------------------
+
+// Counting Sort
+
+input array A, output array B, and auxiliary array C
+n = A.length, k = largest integer in array
+
+CountingSort(A)
+    for i = 1 to k
+        C[k] = 0
+    for j = 1 to n 
+        C[A[j]] = C[A[j]] + 1
+    for i = 2 to n 
+        C[i] = C[i] + C[i-1]
+    for j = n downto 1
+        B[C[A[j]]] = A[j]
+        C[A[j]] = C[A[j]] - 1
+
+-------------------------------------------------------------------------------

@@ -1,0 +1,17 @@
+greedy(S)
+    A = {a[1]}
+    i = 1
+    for j = 2 to n
+        if s[j] >= f[i]
+            A = A union {a[i]}
+            j = i
+return A 
+
+recursiveActicitySelector(s, f, k, n)
+    m = k+1
+    while (m <= n && s[m] < f[k])
+        m++
+    if (s[m] >= f[k])
+        return {a[m]} union recursiveActicitySelector(s,f,m,n)
+    else
+        return 0
