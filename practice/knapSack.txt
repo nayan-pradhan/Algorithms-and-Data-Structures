@@ -4,5 +4,6 @@ Greedy Method
     -> still not always relabible
     -> dynamic programming is recommended
 
-Dynamic programming
-    -> 
+Dynamic programming approach:
+
+
