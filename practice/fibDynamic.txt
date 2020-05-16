@@ -1,0 +1,13 @@
+n   -> 0 1 2 3 4 5 6 7 
+fib -> 0 1 1 2 3 5 8 13
+
+fibonacci(n)
+    create array Mem[]
+    for i = 0 to n
+        if i == 0
+            Mem[i] = 0
+        else if i <= 2
+            Mem[i] = 1
+        else 
+            Mem[i] = Mem[i-1] + Mem[i-2]
+    return Mem[n]
