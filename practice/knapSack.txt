@@ -1,4 +1,4 @@
-Greedy Method
+Greedy Method=
     -> one can use it
     -> fractional greedy works best
     -> still not always relabible
@@ -11,18 +11,27 @@ We have items each of with with weight w[i] and profit of p[i] -> item(w, p)
 Our dynamic matrix table is called V 
 
 knapSack(S)
-    for i = 1 to p      // MAKES SENSE FOR PROFIT TO BE STRICTLY GREATER THAN 0
-        V[0, i] = 0
+    for i = 1 to n  // MAKES SENSE FOR NUM OF ELEMENT TO BE STRICTLY GREATER THAN 0
+        V[i, 0] = 0
     for j = 0 to w 
-        V[j, 0] = 0
-    for i = 1 to p 
+        V[0, j] = 0
+    for i = 1 to n 
         for j = 0 to w 
-            if w[i] > wSack // cannot be part of solution
+            if w[i] > j // cannot be part of solution
                 V[i, j] = V[i-1, j]
             else 
-                if V[i-1, j] > V[i-1, wSack-w[i]] + p[i]
+                if V[i-1, j] > V[i-1, j - w[i]] + p[i]
                     V[i, j] = V[i-1, j]
                 else
-                    V[i, j] = V[i-1, wSack - w[i]] + p[i]
+                    V[i, j] = V[i-1, j - w[i]] + p[i] 
 
-                    
+solution(S)
+    i = n 
+    k = w 
+    while (i > 0 AND k > 0) 
+        if (V[i, k] != V[i-1, k])
+            add item i to knapSack
+            i = i - 1
+            k = k - w[i]
+        else 
+            i = i - 1

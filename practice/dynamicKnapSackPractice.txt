@@ -1,0 +1,42 @@
+           ------ W ------>
+         0x0 0x1 0x2 0x3 0x4
+|    0x0  0   0   0   0   0
+|    1x0  0
+|    2x0  0
+n    3x0  0
+|    4x0  0
+|    5x0  0
+        
+The wight of the knapSack = W 
+The number of items to choose from = n 
+Each item has weight and benifit in the order (w, b)
+V is the array for creating the dynamic table/matrix
+
+// this function fills up our dynamic table/matrix
+knapSack(S)
+    for i = 1 to n 
+        V[i, 0] = 0
+    for j = 0 to W
+        V[0, j] = 0
+    for i = 1 to n
+        for j = 0 to W 
+            if w[i] > j 
+                V[i, j] = V[i-1, j]
+            else 
+                if V[i-1, j] > ( V[i-1, j-w[i]] + benifit[i])
+                    V[i, j] = V[i-1, j]
+                else 
+                    V[i, j] = V[i-1, j-w[i]] + benifit[i]
+
+// selection -> solution part
+solution(S)
+    i = n
+    k = W 
+    while (i > 0 && k > 0)
+        if V[i, k] != V[i-1, k]
+            add i to my solution list -> (S.push_back(i))
+            i--
+            k = k - w[i]
+        else 
+            i--    
+
