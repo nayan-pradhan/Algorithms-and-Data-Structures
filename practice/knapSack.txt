@@ -1,0 +1,8 @@
+Greedy Method
+    -> one can use it
+    -> fractional greedy works best
+    -> still not always relabible
+    -> dynamic programming is recommended
+
+Dynamic programming
+    -> 

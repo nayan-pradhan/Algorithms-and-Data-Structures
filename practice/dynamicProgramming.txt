@@ -1,0 +1,53 @@
+// NON DYNAMIC APPROACH //
+LCS (x, y, i, j)
+    if i == 0 or j == 0
+        return 0
+    else if x[i] == y[j]
+        return LCS(x, y, i-1, j-1)+1
+    else
+        return max{LCS(x,y,i-1,j), LCS(x,y,i,j-1)}
+
+// DYNAMIC APPROACH //
+LCS(x, y, i, j)
+    if c[i, j] == NIL 
+        if i == 0 or j == 0
+            c[i,j] = 0
+        else if x[i]==y[j]
+            c[i,j] = LCS(x,y,i-1,j-1)+1
+        else    
+            c[i,j] = max{ LCS(x,y,i-1,j), LCS(x,y,i,j-1) }
+    return c[i, j]
+
+// NON RECURSIVE DYNAMIC APPROACH //
+LCS(x,y)
+    m = x.length
+    n = y.length
+    let b = [1..n, 1..m] and c = [0..n, 0..m] be new tables
+    for i = 1 to m 
+        c[i, 0] = 0
+    for j = 1 to n
+        c[0, j] = 0
+    for i = 1 to m 
+        for j = 1 to n 
+            if x[i] == y[j]
+                c[i,j] = c[i-1, j-1] + 1
+                b[i,j] = "'\"
+            else if (c[i-1, j] >= c[i, j-1])
+                c[i, j] = c[i-1, j]
+                b[i, j] = "^"
+            else 
+                c[i, j] = c[i, j-1]
+                b[i, j] = "<-"
+    reutrn c and b 
+ 
+// TRACE BACKWARDS //
+print(b, X, i, j)
+    if i == 0 || j == 0             // STOPPING CONDITION
+        return 0
+    if b[i,j] == "'\"
+        print(b, X, i-1, j-1)       // RECURSION THAT WE NEED TO TRACE
+        print x[i]                  // PRINT HAS TO BE AFTER RECURSION TO PRINT IN ORDER
+    else if b[i,j] == "^"
+        print(b, X, i-1, j)
+    else 
+        print(b, X, i, j-1)
