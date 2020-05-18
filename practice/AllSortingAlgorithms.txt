@@ -46,12 +46,12 @@ merge(Array, p, q, r)
     i = 1
     j = 1
     for k = p to r 
-        if L[i] <= L[j]
+        if L[i] <= R[j]
             Array[k] = L[i]
             i++
         else
-            Array[k] = R[i]
-            i++
+            Array[k] = R[j]
+            j++
 
 -------------------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ heapSort(A)
     for (j = A.length downto 2)
         swap A[j] and A[1]
         A.heapSize--
-        maxHeapify(A, i)
+        maxHeapify(A, j)
 
 buildMaxHeap(A)
     n = A.length
@@ -86,7 +86,7 @@ maxHeapify(A, i)
 
 // Quick Sort // 
 
-QuickSort(A, p, r)
+QuickSort(A, p, r)(
     while p < r 
         q = Partation(A, p, r)
         QuickSort(A, p, q-1)
@@ -149,7 +149,7 @@ CountingSort(A)
         C[k] = 0
     for j = 1 to n 
         C[A[j]] = C[A[j]] + 1
-    for i = 2 to n 
+    for i = 2 to k 
         C[i] = C[i] + C[i-1]
     for j = n downto 1
         B[C[A[j]]] = A[j]

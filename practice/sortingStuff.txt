@@ -1,0 +1,188 @@
+** INSERTION SORT **
+
+insertionSort(A)
+    for j = 2 to A.length
+        key = A[j]
+        i = j - 1
+        while i > 0 && key < A[i]
+            A[i+1] = A[i]
+            i = i - 1
+        A[i+1] = key 
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+** MERGE SORT **
+
+mergeSort(A, p, r)  
+    if p < r 
+        q = (p+r)/2
+        mergeSort(A, p, q)
+        mergeSort(A, q+1, r)
+        merge(A, p, q, r)
+
+merge(A, p, q, r)
+    n1 = q-p+1
+    n2 = r-q 
+    make two arrays L[1...n1+1] and R[1...n2+1]
+    for i = 1 to n1 
+        L[i] = A[p+i-1]
+    for j = 1 to n2
+        R[j] = A[q+j]
+    L[n1+1] = infinity
+    R[n2+1] = infinity
+    i = 1
+    j = 1
+    for k = p to r
+        if L[i] <= R[j]
+            A[k] = L[i]
+            i++
+        else
+            A[k] = R[j]
+            j++
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+** COUNTING SORT ** 
+
+// input array -> A 
+// output array -> B 
+// auxiliary array -> C
+
+countingSort(A)
+
+    k = biggest element in A 
+    n = size of array A
+
+    for i = 1 to k 
+        C[i] = 0
+    for j = 1 to n 
+        C[A[i]] = C[A[i]] + 1 
+    for i = 2 to k 
+        C[i] = C[i-1] + C[i]
+    for j = n downto 1 
+        B[C[A[j]]] = A[j]
+        C[A[j]] = C[A[j]] - 1
+
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+** SELECTION SORT **
+
+selectionSort(A)
+    min = i 
+    for j = i+1 to n 
+        if A[j] < arr[min]
+            min = j
+    if min != i 
+        swap A[min] and A[i]
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+** RADIX SORT **
+
+radixSort(A, d)
+    for i = 1 to d 
+        sort for A on digit d using insertionSort
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+** QUICK SORT ** 
+
+quickSort(A, p, r) 
+    if p < r 
+        q = partation(A, p, r)
+        quickSort(A, p, q-1)
+        quickSort(A, q+1, r)
+
+partation(A, p, r)
+    x = A[p]
+    i = p
+    for j = i+1 to r 
+        if A[j] < x 
+            i = i + 1 
+            swap A[i] and A[j]
+    swap x and A[i]
+    return i
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+** RANDOM QUICK SORT **
+
+randQuickSort(A, p, r)
+    if p < r 
+        q = randomPartation(A, p, r)
+        randQuickSort(A, p, q-1)
+        randQuickSort(A, q+1, r)
+
+randomPartation(A, p, r)
+    k = random number from p to r 
+    swap A[p] and A[k]
+    return partation(A, p, r)
+
+partation(A, p, r)
+    x = A[p]
+    i = p 
+    for j = i+1 to r 
+        if A[j] < x
+            i = i + 1
+            swap A[j] and A[i]
+    swap x and A[i]
+    return i
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+** HEAP SORT **
+
+heapSort(A)
+    buildMaxHeap(A)
+    for j = A.length downto 2
+        swap A[j] and A[1]
+        hepaSize--
+        maxHepaify(A, j)
+
+maxHeapify(A, j)
+    l = left[j]
+    r = right[j]
+    if l < A.length && A[l] > A[j]
+        largest = l 
+    else 
+        largest = j
+    else if r < A.length && A[r] > A[largest] 
+        largest = r 
+    if largest != j
+        swap A[j] and largest 
+        maxHepaify (A, largest)
+    
+buildMaxHeap(A) 
+    n = A.length
+    for j = floor(n/2) downto 1 
+        maxHeapify(A, j)
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+** BUCKET SORT **
+
+bucketSort(A)
+    n = A.length
+    for i = 0 to n-1
+        make B[i] empty buckets 
+    for i = 1 to n 
+        insert A[i] into B[n*A[i]]
+    for i = 0 to n-1
+        sort B[i] using insertion sort 
+    merge all buckets in order
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+** BUBBLE SORT **
+
+bubbleSort(A)
+    for i = 1 to A.length-1
+        for j = A.length to i+1
+            if A[j] < A[j-1]
+                swap A[j] and A[j-1]
+
+-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-

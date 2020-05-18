@@ -1,0 +1,23 @@
+quickSort(A, p, r)
+    if p < r
+        q = randomPartation(A, p, r)
+        quickSort(A, p, q-1)
+        quickSort(A, q+1, r)
+    end
+
+randomPartation(A, p, r)
+    k = random number between p and r
+    exchange A[p] and A[k]
+    return partation(A, p, r)
+
+Partation(A, p, r)
+    x = A[p]
+    i = p 
+    for j = i+1 to r 
+        if A[j] <= x
+            i++
+            exchange A[j] and A[i]
+        end
+    end
+    exchange A[p] and A[i]
+    return i

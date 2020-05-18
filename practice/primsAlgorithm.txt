@@ -1,0 +1,32 @@
+PrimsAlg
+    Q = V
+    key[v] = inf for all v in V 
+    key[s] = 0 for some arbitrary s in V 
+    while Q != NIL 
+        u = ExtractMin(Q)
+        for each v in Adj[u]
+            if v belongsTo Q and w(u, v) < key[v]
+                key[v] = w(u,v)
+                pie[v] = u
+
+PrimsAlg
+    Q = V 
+    key[v] = infinity for all v that belongsTO V
+    key[s] = 0 for arbitrary s belongsTO V 
+    while Q != NIL 
+        u = extractMin(Q)
+        for each v in AdjList[u]
+            if v belongs to Q and w(u,v) < key[v]
+                key[v] = w(u,v)
+                pi[v] = u
+
+PrimsAlg 
+    Q = V 
+    key[v] = infinity for all V 
+    key[s] = 0 for arbitrary s in V 
+    while Q != NIL 
+        u = extractMin(Q)
+        for each v in adjList[u]
+            if v belongs to Q and w(u, v) < key[v] 
+                key[v] = w(u, v)
+                pi[v] = u

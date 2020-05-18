@@ -1,0 +1,41 @@
+d[s] = 0 
+for each v that belongs to V \ {s}
+    d[v] = infinity 
+S = NIL 
+Q = V // min priority queue
+while Q != NIL 
+    u = extractMin(Q)
+    S = S U {u}
+    for each v in Ajd[u]
+        if d[v] > d[u] + w(u, v)
+            d[v] = d[u] + w(u, v)
+            pi[v] = u 
+
+bfsDistra
+    d[s] = 0 
+    for all v in V - {s} 
+        d[v] = inf
+    Q = NIL
+    enqueue(Q, s) // normal queue 
+    while Q != NIL
+        u = dequeeu(Q)
+        for each v in adj[u]
+            if w(u,v) + d[u] < d[v] 
+                if d[v] = infinity 
+                    d[v] = d[u] + 1
+                    pi[v] = u 
+                    enqueue(Q, v)
+
+diastra
+    for all v that belongs to V 
+        d[v] = infinity
+    d[s] = 0 for an arbitrary s in V 
+    Q = V 
+    S = NIL 
+    while Q != NIL 
+        u = extractMin(Q)
+        S = S union {u}
+        for all v in adj[u]
+            if d[u] + w(u, v) < d[v]
+                d[v] = d[u] + w(u, v)
+                pi[v] = u 

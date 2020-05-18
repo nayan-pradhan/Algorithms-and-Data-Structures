@@ -2,6 +2,7 @@
 
 template <class T>
 void multiplies (T &sum, T x, T n) {
+    sum = 1;
     for (int i = 0; i <= n; i++) {
         sum = sum + (x*i);
     }

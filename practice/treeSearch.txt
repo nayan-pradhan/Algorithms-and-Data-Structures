@@ -1,0 +1,84 @@
+bfs(G, s)
+    for each vertex u that belongs to G.V - {s}
+        u.d = infinity
+        u.pie = NIL
+        u.color = WHITE 
+    s.d = 0
+    s.color = WHITE 
+    s.pie = NIL 
+    Q = NIL 
+    enqueue (Q, s)
+    while (Q != NIL)
+        v = dequeue(G)
+        for each vertex v that belongs to G.Adj[v]
+            if v.color = WHITE 
+                v.pie = u
+                v.color = GREY 
+                v.d = u.d + 1
+                enqueue(G, v)
+        u.color = BLACK
+
+dfs(G)
+    for each vertex u that belongs to G.V 
+        u.color = WHITE
+        u.pie = NIL
+    time = 0
+    for each vertex u that belongs to G.V 
+        if u.color = WHITE 
+            dfsVisit(G, u)
+
+dfsVisit (G, s)
+    time = time + 1
+    u.d = time
+    u.color = GREY 
+    for each vertex v that belongs to G.adj[u]
+        if v.color = WHITE 
+            v.pie = u
+            dfsVisit (G, v)
+    u.color = BLACK 
+    time = time + 1
+    u.f = time
+_____________________________________________________________________________________
+
+bfs(G, s)
+    for each vertex v that belongs to G.V - {s}
+        v.d = infinity 
+        v.pie = NIL 
+        v.color = WHITE 
+    s.d = 0
+    s.pie = NIL 
+    s.color = WHITE
+    Q = NIL 
+    enqueue(Q, s)
+    while Q!=NIL 
+        u = dequeue(Q)
+        for each adjacent vertex v that belongs to G.Adj[u]
+            if v.color = WHITE
+                v.color = GRAY 
+                v.d = u.d + 1
+                v.pie = u 
+                enqueue(Q, v)
+        u.color = BLACK
+
+
+dfs(G)
+    for each vertex u that belongs to G.V 
+        u.color = WHITE 
+        u.pie = NIL 
+    time = 0
+    for each vertex u that belongs to G.V 
+        if u.color == WHITE 
+            dfsVisit(G, u)
+    
+dfsVisit(G, u)
+    time = time + 1
+    u.d = time 
+    u.color = GRAY 
+    for each vertex v that belongs to G.Adj[u]
+        if v.color = WHITE 
+            v.pie = u
+            dfsVisit(G, u)
+
+    u.color = BLACK
+    time = time + 1
+    u.f = time 

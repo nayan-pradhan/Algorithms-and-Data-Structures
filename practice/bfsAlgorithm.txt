@@ -1,0 +1,22 @@
+// G is the Graph
+// s is the starting node
+
+bfsAlgorithm(G, s)
+    for each vertex u belonging to G.V - {s}
+        u.pi = NIL
+        u.d = infinity
+        u.color = WHITE
+    s.color = WHITE
+    s.pi = NIL
+    s.d = 0
+    Q = NIL                    // Queue
+    ENQUEUE (Q, s)
+    while (Q != NIL)
+        u = DEQUEUE(Q)
+        for each v = adjacent matrix of u
+            if v.color == WHITE 
+                v.color = GREY
+                v.d = u.d + 1
+                v.pi = u
+                ENQUEUE(Q, v)
+        u.color = BLACK
