@@ -1,0 +1,15 @@
+// FOR NEGATIVE WEIGHT CYCLES
+
+bellmannFord
+    for all v that belongs to V 
+        d[v] = infinity
+    d[s] = 0 for arbitarly selected s from V 
+    for i = 1 to |V|-1
+        for each (u,v) that belongs to E 
+            if d[u] + w(u, v) < d[v] 
+                d[v] = d[u] + w(u, v)
+                pi[v] = u 
+
+for each (u, v) that belongs to E 
+    if d[v] > d[u] + w(u, v)
+        report existance of negative weight cycle
