@@ -20,11 +20,10 @@ bfsDistra
     while Q != NIL
         u = dequeeu(Q)
         for each v in adj[u]
-            if w(u,v) + d[u] < d[v] 
-                if d[v] = infinity 
-                    d[v] = d[u] + 1
-                    pi[v] = u 
-                    enqueue(Q, v)
+            if d[v] = infinity 
+                d[v] = d[u] + 1
+                pi[v] = u 
+                enqueue(Q, v)
 
 diastra
     for all v that belongs to V 
