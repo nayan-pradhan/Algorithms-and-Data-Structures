@@ -1,0 +1,9 @@
+T -> text -> {1..n}
+P -> patern we search in T -> {1..m}
+
+naiveStringMatching
+    n = T.length
+    m = P.length 
+    for s = 0 to n-m    
+        if P[1..m] == T[s+1 to s+n-m]
+            return s  

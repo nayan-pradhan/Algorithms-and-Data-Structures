@@ -1,0 +1,16 @@
+root[level 0] : 
+50 (BLACK) -> children(25(RED), 100(BLACK))
+
+level 1 : 
+25(RED) -> parent(50(BLACK)) -> children (20(BLACK), 40(BLACK)) AND 
+100(BLACK) -> parent(50(BLACK)) -> children (120(RED))
+
+level 2 : 
+20(BLACK) -> parent(25(RED)) -> children (5(RED)) ,
+40(BLACK) -> parent(25(RED)) -> children (20(RED), 45(RED)) AND 
+120(RED) -> parent(100(BLACK))
+
+level 3:
+5(RED) -> parent(20(BLACK)) ,
+30(RED) -> parent(30(BLACK)) AND
+45(RED) -> parent(30(BLACK))

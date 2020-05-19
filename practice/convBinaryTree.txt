@@ -1,0 +1,18 @@
+void transform node **root
+    create new BST called newBST
+    // assume the old tree is called oldBST
+    newBST.root = extract_min(oldBST.root)
+    while (oldBST.root != NIL)
+        if (newBST.node == newBST.root)
+            node temp = extract_max(oldBST.root)
+            root -> right = temp 
+            temp -> parent = root 
+        else if (newBST.node == newBST.node->parent->right)
+            node temp = extract_min(oldBST.root)
+            newBST.node -> left = temp 
+            temp -> parent = newBST.node 
+        else 
+            node temp = extract_max(oldBST.root)
+            newBST.root -> right = temp 
+            temp -> parent = newBST.node 
+

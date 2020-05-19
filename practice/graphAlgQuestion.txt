@@ -1,0 +1,55 @@
+BST algorithm
+
+Assume all nodes are colored WHITE
+Queue Q{}
+
+start at node 0:
+Q{0}
+node0.color = GRAY
+visit adjacent node 1
+    Q{0, 1}
+    adjacent node1.color = GRAY
+visit adjacent node 2   
+    Q{0, 1, 2}
+    adjacent node3.color = GRAY 
+Q{1, 2}
+node0.color = BLACK 
+
+at node 1:
+look at adjacent node 2, the color is GRAY so no need to visit
+look at adjacent node 3, the color is WHITE so we visit
+visit adjacent node 3
+    Q{1, 2, 3}
+    adjacent node3.color = GRAY 
+Q{2, 3}
+node1.color = BLACK 
+
+at node 2:
+look at adjacent node 3, the color is GRAY so no need to visit
+Q{3}
+node2.color = BLACK 
+
+at node 3:
+look at adjacent node 4, the color is WHITE so we visit
+visit adjacent node 4
+    Q{3, 4}
+    node4.color = GRAY 
+Q{4}
+node3.color = BLACK 
+
+at node 4:
+look at adjacent node 0, color is BLACK so we do not visit
+look at adjacent node 0, color is BLACK so we do not visit
+look at adjacent node 5, color is WHITE so we visit
+visit adjacent node 5
+    Q{4, 5}
+    node 5.color = GRAY 
+Q{5}
+node4.color = BLACK
+
+at node 5:
+no adjacent nodes
+Q{}
+node5.color = BLACK 
+
+Therefore we have visited all the nodes!

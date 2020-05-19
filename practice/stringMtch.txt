@@ -1,0 +1,25 @@
+stringMatch(T, P)
+    n = T.length
+    m = P.length 
+    pi = piFunction(P)
+    q = 0 
+    for i = 1 to n 
+            while q > 0 and P[q+1] != P[i]
+                q = pi[q]
+            if P[q+1] == P[i]
+                q++
+            if q == m
+                print "Pattern match when shifting string " i - m 
+            q = pi[q]
+
+piFunction(P)
+    m = P.length
+    create an array pie[1..m]    
+    k = 0 
+    for j = 2 to m 
+        while  k > 0 and P[j] != P[k+1]
+            k = pie[k]
+        if P[j] == P[k+1]
+            k++ 
+        pie[k] = k
+    return pie

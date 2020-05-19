@@ -1,0 +1,9 @@
+fastMultiplication (a, n)
+    if n == 0
+        return 0
+    else
+        temp = fastMultiplication (a, n/2) // log n 
+        if n mod 2 == 0
+            return temp + temp 
+        else 
+            return temp + temp + a

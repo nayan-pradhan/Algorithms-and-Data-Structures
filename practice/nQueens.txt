@@ -1,0 +1,21 @@
+checker(board[N][N], row, column) 
+    if (row ! destroy queen)
+        return true
+    else if (column ! destroy queen)
+        return true
+    else if (diagonal ! destroy queen)
+        return true
+    else
+        return false
+
+solveNQueens(board[N][N], int column)
+    if column >= n 
+        return true
+    for i = 0 to N 
+        if checker(board, i, column) == true
+            board[i][column] = 1
+
+            if solveNQueens(board, col+1) == true
+                return true;
+            else 
+                board[i][column] = 0 // BACKTRACK
