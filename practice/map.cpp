@@ -52,6 +52,7 @@ int main() {
     Translator.insert(std::pair<std::string, std::string>("Termin", "Meeting")); // learn this
     //
     Translator.insert(std::pair<std::string, std::string>("Pause", "Break"));
+    Translator.insert(std::pair<std::string, std::string>("Arbeitet", "Work"));
     
     std::map<int, std::string> Numbers;
     Numbers = {{1, "Ein"}, {2, "Zwei"}, {3, "Drei"}, {4, "Vier"}, {5, "Fünf"},

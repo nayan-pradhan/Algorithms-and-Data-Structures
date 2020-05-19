@@ -68,13 +68,15 @@ countingSort(A)
 
 ** SELECTION SORT **
 
-selectionSort(A)
-    min = i 
-    for j = i+1 to n 
-        if A[j] < arr[min]
+selectionSort(A, n)
+for i = 1 to n
+    min = i
+    for j = i+1 to n
+        if (A[j] < A[min])
             min = j
-    if min != i 
-        swap A[min] and A[i]
+    if (min != i) 
+        swap (A[i], A[min])
+
 
 -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
 

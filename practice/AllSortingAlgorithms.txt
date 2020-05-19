@@ -14,13 +14,14 @@ insertionSort(Array)
 
 // Selection Sort //
 
-selectionSort(Array)
-    min = i 
+selectionSort(A, n)
+for i = 1 to n
+    min = i
     for j = i+1 to n
-        if (Array[j] < Array[min])
+        if (A[j] < A[min])
             min = j
     if (min != i) 
-        swap (Array[i], Array[min])
+        swap (A[i], A[min])
 
 -------------------------------------------------------------------------------
 

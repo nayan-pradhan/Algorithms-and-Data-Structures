@@ -1,0 +1,13 @@
+bellmannfort
+    for each v belonging to V \ {s}
+        d[v] = infinity
+    d[s] = 0 for arbitary selected s from v
+    for i = 1 to |V|-1
+        for each edge w(u, v) that belongs to E 
+            if d[v] > d[u] + w(u, v)
+                d[v] = d[u] + w(u, v)
+                pi[v] = u 
+    
+    for each edge w(u, v) that belongs to E 
+        if d[v] > d[u] + w(u, v)
+            report negative weight cycle

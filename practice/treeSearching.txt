@@ -1,0 +1,40 @@
+bfs
+    for each u that belongs to V - {s}
+        u.color = WHITE
+        u.d = infinity
+        u.pi = NIL
+    s.color = GRAY
+    s.d = 0
+    s.pi = NIL 
+    create Q = NIL 
+    Enqueue(Q, s)
+    while (Q != NILL)
+        u = dequeue(Q)
+        for each v that belongs to adj[u]
+            if v.color = WHITE 
+                v.d = u.d+1
+                v.pi = u
+                u.color = GRAY
+                enqueue (Q, v)
+        u.color = BLACK
+
+dfs(G)
+    for each u that belongs to G.V 
+        u.pi = NIL 
+        u.color = WHITE 
+    time = 0
+    for each u that belongs to V 
+        if u.color == WHITE 
+            dfsVisit(G, u)
+
+dfsVisit(G, u)
+    time = time+1
+    u.d = time 
+    u.color = GRAY 
+    for each v that belongs to adj[u]
+        if v.color = WHITE 
+            v.pi = u 
+            dfsVisit (G, v)
+    u.color = BLACK 
+    time = time + 1
+    u.f = time

@@ -1,0 +1,24 @@
+hashInsert(T, k)
+    i = 0 
+    repeat
+        j = h(k, i)
+        if T[j] != NIL 
+            T[j] = k
+            return j
+        else 
+            i++
+    until (i == m)
+    error ("hast table full")
+
+
+hashSearch(T, k)
+    i = 0
+    repeat  
+        j = h(k, i)
+        if T[j] == k 
+            return j 
+        else 
+            i++ 
+    until T[j] == NIL OR i == m
+    throw error ("No hash")
+            

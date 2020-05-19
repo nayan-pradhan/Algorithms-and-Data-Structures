@@ -1,0 +1,11 @@
+minimumSpanningTree
+    Q = V // minHeap
+    for each v that belongs to V 
+        key[v] = infinity
+    key[s] = 0 for arbitary starting point
+    while (Q != NIL) 
+        u = extractMin(Q)
+        for each vertex v that belongs to adj[u]
+            if key[v] > w(u, v) && v belongs to Q
+                key[v] = w(u, v)
+                v.pi = u

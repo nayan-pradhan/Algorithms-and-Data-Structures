@@ -6,7 +6,7 @@ bellmannFord
     d[s] = 0 for arbitarly selected s from V 
     for i = 1 to |V|-1
         for each (u,v) that belongs to E 
-            if d[u] + w(u, v) < d[v] 
+            if d[v] + w(u, v) < d[v] 
                 d[v] = d[u] + w(u, v)
                 pi[v] = u 
 

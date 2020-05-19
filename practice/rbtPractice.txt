@@ -1,0 +1,80 @@
+leftRotate(T,x)
+    y = x -> right
+    x -> right = y -> left
+    if y -> left != NIL 
+        y -> left -> parent = x 
+    y -> parent = x -> parent 
+    if x -> parent = T.NILL 
+        T.root = y 
+    else if x = x -> parent -> right 
+        x -> parent -> right = y 
+    else 
+        x -> parent -> left = y
+    y -> left = x 
+    x -> parnet = y 
+
+    
+insert(T, z)
+x = T.root 
+y = NIL 
+while (x != NIL) 
+    y = x 
+    if (z.key < x.key)
+        x = x -> left 
+    else 
+        x = x -> right 
+z -> parent = y 
+if y == T.NIL 
+    T.root = z 
+else if y.key < z.key 
+    y -> right = z
+else 
+    y -> left = z 
+z -> color = RED 
+z -> right = NIL 
+z -> left = NIL 
+insertFixup(T, z)
+
+insertFixup(T, z)
+    while z -> parent -> color == RED
+        if z->parent = z->parent->parnet->left 
+            y = z -> parent -> parnet -> right
+            if y -> color == RED 
+                y -> color = BLACK
+                z -> parent = BLACK
+                z -> parent -> parnet -> color = RED
+                z = z -> parnet -> parnet
+            else if z = z -> parent -> right
+                z = z -> parent 
+                leftRotate(T, z)
+                z -> parent -> color = BLACK 
+                z -> parent -> parent -> color = RED 
+                RightRotate (T, z->parent->parent)
+        else 
+            same as above for right 
+    T -> root -> color = BLACK 
+
+delete(T, z)
+    y = z 
+    y -> originalColor = y -> color 
+    if z -> left == T.NILL 
+        x = z -> right 
+        RB-Transplant(T, z, z -> right)
+    else if z -> right = T.NILL 
+        x = x -> left
+        RB-Transplant(T, z, z->left)
+    else 
+        y = min(z -> right) //successer 
+        y -> originalColor = y -> color 
+        x = y -> right 
+        if y -> parnet == z 
+            x -> parent = y
+        else RB-Transplant(T, y, y->right)
+            y -> right = z -> right 
+            y -> right -> parnet = y 
+            RB-Transplant(T, z, y)
+            y -> left = z -> left 
+            y -> left -> parent = y
+            y -> color = z -> color 
+        if y -> original -> color == BLACK 
+            RB-DELETE-FIXUP(T, x)

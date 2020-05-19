@@ -9,7 +9,6 @@ void print (std::list<int>myList) {
             HERE WE CANNOT USE myList.end()-1 BECAUSE THE OPERATOR IS NOT OVERLOADED.
             WE INSTEAD USE prev(myList.end()) THAT IS PART OF THE C++11 LIBRARY 
             */
-
             std::cout << *itr << std::endl;
         }
         else {
@@ -25,6 +24,8 @@ int main() {
     myList.insert(itr,79); // INSERTS 79 IN BEGINING.
     //THE ITERATOR STILL POINTS TO THE FIRST ORIGINAL ELEMENT -> 1 -> THAT IS NOW IN POSTION 2
     print(myList);
+    myList.push_front(69);
+    myList.push_back(720);
     itr++;
     itr++;
     myList.insert(itr, 2, 99); // INSERTS 2 99s IN POSITION OF ITERATOR (SAME AS ABOVE)

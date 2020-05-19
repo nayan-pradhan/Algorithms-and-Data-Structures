@@ -11,3 +11,21 @@ fibonacci(n)
         else 
             Mem[i] = Mem[i-1] + Mem[i-2]
     return Mem[n]
+
+
+
+0 1 2 3 4 5 6 7 
+0 1 1 2 3 5 8 13
+
+
+fibonacci(n)
+	create a matrix mem[]
+	for i = 0 to n
+		if i == 0
+			mem[i] = 0
+		else if i <= 2
+			mem[i] = 1
+		else 
+			mem[i] = mem[i-1]+mem[i-2]
+	return mem[n]
+		

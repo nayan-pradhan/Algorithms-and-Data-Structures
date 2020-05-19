@@ -60,7 +60,7 @@ RBInsertFixup(T, z)
                 z->parent->parent->color = RED
                 z = z->parent->parent               //to check if the above things violated any other properties or not
             else if (z == z->parent->right)
-                z = z->parent 
+                z = z->parent
                 LeftRotate(T,z)
                 z->parent->color = BLACK
                 z->parent->parent->color=RED

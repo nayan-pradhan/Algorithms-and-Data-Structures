@@ -1,0 +1,120 @@
+insertionSort(A)
+    for j = 2 to A.len
+        key = A[j]
+        i = j-1
+        while i > 0 && key<A[i]
+            A[i+1] = A[i]
+            i--
+        A[i+1] = key
+
+mergeSort(A, p, r)
+    if p < r 
+        q = (p+r)/2
+        mergeSort(A, p, q)
+        mergeSort(A, q+1, r)
+        merge (A, p, q, r)
+
+merge(A, p, q, r)
+    n1 = q - p + 1
+    n2 = r - p 
+    L[1 to n1+1] R[1 to n2+1]
+    for i = 1 to n1
+        L[i] = A[p+i-1]
+    for j = 1 to n2 
+        R[i] = A[q+i]
+    L[n1+1] = inf 
+    R[n2+1] = inf 
+    i = 1
+    j = 1
+    for k = p to r 
+        if Lj 
+            Ajfl
+            flkaj 
+        else    
+            afjo 
+
+Counting Sort
+    for i = 1 to k 
+        C[i]= 0 
+    for  i = 1 to n 
+        C[A[i]] = C[A[i]] + 1
+    for i = 2 to k 
+        C[i] = C[i] + C[i-1]
+    for j = n down to 1
+        B[A[C[j]]] = A[j]
+        C[A[j]] = C[A[j]] - 1
+
+SelectionSOrt (A)
+    n = A.length
+    for i = 1 to n
+        min = i
+        for j = i+1 to n 
+            if A[j] < A[i]
+                min = j 
+        if (min != i)
+            swap A[i] and A[min]
+
+Radix Sort 
+    for i = 1 to d 
+        sort for A on digit d using insertionSort 
+
+QuickSort (A, p, r)
+    if p < r 
+        q = randomPartation(A, p, r)
+        QuickSort(A, p, q-1)
+        QuickSort(A, q+1, r)
+
+randomPartation(A, p, r)
+    k = randnom nimb betn p ad r 
+    swap A[p] and A[k]
+    return partation(A, p, r)
+
+partation(A, p, r)
+    x = A[p]
+    i = p 
+    for j = i+1 to A.length
+        if A[j] < x 
+            i = i+1
+            swap A[j] and A[i]
+    swap x and A[i]
+    return i
+
+heapSort(A)
+    buildMaxHeap(A)
+    for j = A.length downto 2 
+        swap A[j] and A[1]
+        heapSIze --
+        maxHeapify(A, j)
+
+buildMaxHeap(A)
+    for i = floor(A.length/2) to 1
+        maxHeapify(A, i)
+
+maxHeapify(A, i)
+    l = left(i)
+    r = right(i)
+    if l < A.length and A[l] > A[i]
+        largest = l 
+    else 
+        largest = i 
+    else if r < A.length and A[r] > A[largest]
+        largest = r 
+    if largest != i 
+        swap A[largest] and A[i]
+        maxHeapify(A, largest)
+    
+bucketSort (A)
+    n = A.length 
+    for i = 0 to n-1 
+        make B[i] empty buckets 
+    for i = 1 to n 
+        fill B[n*A[i]]
+    for i = 0 to n-1 
+        sort buckets B[0].. B[n-1] using insertion sort 
+    merge all in order
+
+bubbleSort(A)
+    for i = 1 to length - 1
+        for j = length to 2 
+            if A[j] < A[j-1]
+                swap(A[j] and A[j-1])

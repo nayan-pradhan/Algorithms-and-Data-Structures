@@ -1,0 +1,77 @@
+visit (node N)
+    if N == NIL     
+        return 
+    else
+        visit(N->left)
+        N.operation()
+        visit(N->right)
+
+treeSearching(x, N)
+    if x == NIL 
+        return false
+    if N.key < x 
+        treeSearching(n->left)
+    else if N.key > x
+        treeSearching(n->right)
+    else 
+        return true
+
+min(x)
+    while x->left != NIL
+        x = x->left 
+    return x
+
+max(x)
+    while x->right != NIL 
+        x = x->right
+    return x
+
+successor(x)
+    if x->right 
+        return min(x->right)
+    else
+        y = x->parent 
+        while x = y -> right && y != NIL 
+            x = y 
+            y = y -> parent
+        return y
+
+insert(T, z)
+    x = T.root
+    y = NIL 
+    while x != NIL 
+        y = x 
+        if z.key > x.key
+            x = x -> right 
+        else 
+            x = x -> left 
+    z->parent = y 
+    if y == NIL 
+        T.root = z
+    else if z.key < y.key 
+        y->left = z
+    else 
+        y->right = z 
+
+Transplant(T, u, v)
+    if u = u -> parent -> left 
+        u -> parent -> left = v 
+    else 
+        u -> parnet -> right = v 
+    if v != NIL 
+        v -> parnet = u -> parnet
+
+Deletion(T, z)
+    if z -> left == NIL
+        Transplant (T, z, z->right)
+    else if z -> right == NIL 
+        Transplant (T, z, z->left) 
+    else 
+        y = min(z->right)
+        if y.parent!=z
+            Transplant(T, y, y->right)
+            y -> right = z -> right
+            z -> right -> parent = y 
+        Transplant(T, z, y)
+        y -> left = z -> left 
+        z -> left -> parent = y 

@@ -1,0 +1,14 @@
+dijkstra(D)
+    Q = D // min priority queue
+    for each c that belongs to D.V - {s}
+        D[v] = infinity
+    D[s] = 0 for arbitary s
+    S = NIL is solution list
+    while Q != NIL  
+        u = dequee(Q)
+        S U {u}
+        for each v that belongs to adj[u]
+            if key[v] > w(u, v)+key[u] && v belongs to Q 
+                key[v] = w(u, v) + key[u]
+                pi.v = u
+                
